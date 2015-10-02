@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WP0-ZC-ngn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WP0-ZC-ngn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Pick a Comic-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ComicSelectionViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,14 +16,135 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4To-Bc-jy3">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yEg-HI-efQ">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComicCell" id="erH-Th-750" customClass="ComicCellView" customModule="Calvin_and_Hobbes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="PUD-27-iAZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 November" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L54-HM-fRL">
+                                                    <rect key="frame" x="13" y="79" width="75" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="xHf-qS-Umt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="L54-HM-fRL" secondAttribute="bottom" constant="-8" id="1ce-pc-xph"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="PUD-27-iAZ" secondAttribute="bottom" constant="12" id="F23-Sk-Rdh"/>
+                                            <constraint firstItem="L54-HM-fRL" firstAttribute="centerX" secondItem="erH-Th-750" secondAttribute="centerX" id="aDd-uW-Exv"/>
+                                            <constraint firstItem="PUD-27-iAZ" firstAttribute="leading" secondItem="erH-Th-750" secondAttribute="leadingMargin" constant="-8" id="hMN-9d-MdP"/>
+                                            <constraint firstAttribute="topMargin" secondItem="PUD-27-iAZ" secondAttribute="top" constant="8" id="pc7-fQ-bqh"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="PUD-27-iAZ" secondAttribute="trailing" constant="-8" id="rGU-57-bI0"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="comicThumbnail" destination="PUD-27-iAZ" id="PaP-ze-fpz"/>
+                                            <outlet property="dateLabel" destination="L54-HM-fRL" id="WOf-jA-SJK"/>
+                                            <segue destination="Il2-hF-yCi" kind="show" identifier="showComic" id="dkv-xj-dAL"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="jvP-eh-5Yd"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Q5N-ib-jna"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="4To-Bc-jy3" secondAttribute="trailing" constant="-20" id="1Gu-A3-Ps7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4To-Bc-jy3" secondAttribute="bottom" id="NBx-9L-Xlf"/>
+                            <constraint firstItem="4To-Bc-jy3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="QxC-9r-2CV"/>
+                            <constraint firstItem="4To-Bc-jy3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="b3d-Zf-nep"/>
+                            <constraint firstItem="4To-Bc-jy3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="pFT-o4-atO"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="b3d-Zf-nep"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="tjF-b8-pQ2"/>
+                    <navigationItem key="navigationItem" title="Pick a Comic" id="tjF-b8-pQ2"/>
+                    <connections>
+                        <outlet property="comicCollectionView" destination="4To-Bc-jy3" id="k1I-Vv-Io9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1844" y="481"/>
+        </scene>
+        <!--Comic View Controller-->
+        <scene sceneID="bCk-Zq-y2f">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Il2-hF-yCi" customClass="ComicViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bne-Qb-NP1"/>
+                        <viewControllerLayoutGuide type="bottom" id="2r3-ud-mrQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="39Y-EW-BQp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yl8-jh-6Rj">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="yFd-gx-ae3">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                        <animations/>
+                                    </imageView>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="yFd-gx-ae3" secondAttribute="bottom" id="2Bb-0a-BrS"/>
+                                    <constraint firstItem="yFd-gx-ae3" firstAttribute="leading" secondItem="yl8-jh-6Rj" secondAttribute="leading" id="Je5-Ol-Jjy"/>
+                                    <constraint firstItem="yFd-gx-ae3" firstAttribute="top" secondItem="yl8-jh-6Rj" secondAttribute="top" id="V4A-02-aD4"/>
+                                    <constraint firstAttribute="trailing" secondItem="yFd-gx-ae3" secondAttribute="trailing" id="eYB-Qz-5FH"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yl8-jh-6Rj" firstAttribute="leading" secondItem="39Y-EW-BQp" secondAttribute="leadingMargin" constant="-20" id="JWa-pv-qvH"/>
+                            <constraint firstItem="2r3-ud-mrQ" firstAttribute="top" secondItem="yl8-jh-6Rj" secondAttribute="bottom" id="SgE-i3-aqC"/>
+                            <constraint firstItem="yl8-jh-6Rj" firstAttribute="top" secondItem="Bne-Qb-NP1" secondAttribute="bottom" id="eRK-CT-ATZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yl8-jh-6Rj" secondAttribute="trailing" constant="-20" id="kBq-CK-ecZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="comicImage" destination="yFd-gx-ae3" id="g1o-j8-Rb7"/>
+                        <outlet property="comicScrollView" destination="yl8-jh-6Rj" id="ed5-DW-Pm2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b4u-KE-hAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2589" y="481"/>
         </scene>
         <!--Comics-->
         <scene sceneID="fWK-l1-XCn">
@@ -64,4 +186,7 @@
             <point key="canvasLocation" x="220" y="481"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchImage" width="795" height="795"/>
+    </resources>
 </document>

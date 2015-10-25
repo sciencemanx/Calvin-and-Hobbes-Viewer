@@ -5,104 +5,36 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Pick a Comic-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Comic Selection View Controller-->
+        <scene sceneID="IUX-yb-b0A">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ComicSelectionViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="comicSelectionView" automaticallyAdjustsScrollViewInsets="NO" id="IFu-je-H95" customClass="ComicSelectionViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="dLs-Bd-6JZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="fpT-y4-hLj"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="UbA-bV-1Yq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4To-Bc-jy3">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yEg-HI-efQ">
-                                    <size key="itemSize" width="100" height="100"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComicCell" id="erH-Th-750" customClass="ComicCellView" customModule="Calvin_and_Hobbes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="PUD-27-iAZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
-                                                    <animations/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 November" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L54-HM-fRL">
-                                                    <rect key="frame" x="13" y="79" width="75" height="21"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="xHf-qS-Umt"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <animations/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottomMargin" secondItem="L54-HM-fRL" secondAttribute="bottom" constant="-8" id="1ce-pc-xph"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="PUD-27-iAZ" secondAttribute="bottom" constant="12" id="F23-Sk-Rdh"/>
-                                            <constraint firstItem="L54-HM-fRL" firstAttribute="centerX" secondItem="erH-Th-750" secondAttribute="centerX" id="aDd-uW-Exv"/>
-                                            <constraint firstItem="PUD-27-iAZ" firstAttribute="leading" secondItem="erH-Th-750" secondAttribute="leadingMargin" constant="-8" id="hMN-9d-MdP"/>
-                                            <constraint firstAttribute="topMargin" secondItem="PUD-27-iAZ" secondAttribute="top" constant="8" id="pc7-fQ-bqh"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="PUD-27-iAZ" secondAttribute="trailing" constant="-8" id="rGU-57-bI0"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="comicThumbnail" destination="PUD-27-iAZ" id="PaP-ze-fpz"/>
-                                            <outlet property="dateLabel" destination="L54-HM-fRL" id="WOf-jA-SJK"/>
-                                            <segue destination="Il2-hF-yCi" kind="show" identifier="showComic" id="dkv-xj-dAL"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="jvP-eh-5Yd"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Q5N-ib-jna"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="4To-Bc-jy3" secondAttribute="trailing" constant="-20" id="1Gu-A3-Ps7"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4To-Bc-jy3" secondAttribute="bottom" id="NBx-9L-Xlf"/>
-                            <constraint firstItem="4To-Bc-jy3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="QxC-9r-2CV"/>
-                            <constraint firstItem="4To-Bc-jy3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="b3d-Zf-nep"/>
-                            <constraint firstItem="4To-Bc-jy3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="pFT-o4-atO"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="b3d-Zf-nep"/>
-                            </mask>
-                        </variation>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Pick a Comic" id="tjF-b8-pQ2"/>
-                    <connections>
-                        <outlet property="comicCollectionView" destination="4To-Bc-jy3" id="k1I-Vv-Io9"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="Hsh-Fw-m8A">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="6Dm-Bk-ew7">
+                            <connections>
+                                <segue destination="Il2-hF-yCi" kind="show" identifier="showComic" id="pDu-Z3-f50"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9X4-64-aRk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="481"/>
+            <point key="canvasLocation" x="1712" y="481"/>
         </scene>
         <!--Comic View Controller-->
         <scene sceneID="bCk-Zq-y2f">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Il2-hF-yCi" customClass="ComicViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="comicView" automaticallyAdjustsScrollViewInsets="NO" id="Il2-hF-yCi" customClass="ComicViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bne-Qb-NP1"/>
                         <viewControllerLayoutGuide type="bottom" id="2r3-ud-mrQ"/>
@@ -114,8 +46,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yl8-jh-6Rj">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="yFd-gx-ae3">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="yFd-gx-ae3">
+                                        <rect key="frame" x="0.0" y="0.0" width="795" height="795"/>
                                         <animations/>
                                     </imageView>
                                 </subviews>
@@ -144,13 +76,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4u-KE-hAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2589" y="481"/>
+            <point key="canvasLocation" x="2388" y="481"/>
         </scene>
-        <!--Comics-->
+        <!--Comics Hi-->
         <scene sceneID="fWK-l1-XCn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oQ3-eW-cXb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Comics" id="UBt-ll-ZaC"/>
+                    <tabBarItem key="tabBarItem" title="Comics Hi" id="UBt-ll-ZaC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xVX-Bp-ssd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -159,7 +91,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bTV-MP-Fmz"/>
+                        <segue destination="IFu-je-H95" kind="relationship" relationship="rootViewController" id="iZQ-Ks-m8d"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oFs-9I-M4h" userLabel="First Responder" sceneMemberID="firstResponder"/>

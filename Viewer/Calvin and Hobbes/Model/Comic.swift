@@ -20,6 +20,7 @@ class Comic {
         ComicDownloader.getComic(date, done: {
             self.url = $0
             self.image = $1
+
         })
     }
     

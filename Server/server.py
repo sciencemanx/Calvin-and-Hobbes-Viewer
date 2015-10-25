@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, Api
 
-from comic import Comic
+from Server.comic import Comic
 
 app = Flask(__name__)
 api = Api(app)

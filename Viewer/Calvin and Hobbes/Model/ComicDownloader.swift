@@ -15,7 +15,7 @@ class ComicDownloader {
     class func getComic(date: NSDate, done: (String?, UIImage?) -> ()) {
         let datePart = date.stringFromFormat("YYYY-MM-dd")
         
-        Alamofire.request(.GET, "http://localhost:5000/comic/" + datePart)
+        Alamofire.request(.GET, "https://calvinserver.herokuapp.com/comic/" + datePart)
         .responseJSON { response in
             if let json = response.result.value as? [String: AnyObject] {
                 if let imageUrl = json["url"] as? String {

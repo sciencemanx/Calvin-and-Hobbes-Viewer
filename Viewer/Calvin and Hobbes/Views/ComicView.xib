@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComicViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target">
             <connections>
                 <outlet property="comicImageView" destination="Yni-37-8hA" id="hwQ-Bf-PRv"/>
-                <outlet property="imageConstraintBottom" destination="clk-az-OQK" id="Qy2-Xg-biv"/>
-                <outlet property="imageConstraintLeft" destination="2HG-w2-Ux5" id="MIr-sP-ht1"/>
-                <outlet property="imageConstraintRight" destination="Soc-oT-5zp" id="v1u-LA-HpX"/>
-                <outlet property="imageConstraintTop" destination="hb0-tk-rx3" id="ke8-y1-a8V"/>
-                <outlet property="scrollView" destination="K9r-kf-Wwj" id="ks0-m8-lBA"/>
+                <outlet property="imageBottomPadding" destination="ncb-5Q-AmF" id="x4K-BL-u9i"/>
+                <outlet property="imageHeight" destination="3l1-ml-E3M" id="zI2-bi-2oo"/>
+                <outlet property="imageTopPadding" destination="3OF-Rz-GwM" id="uZe-QB-Gbe"/>
+                <outlet property="imageWidth" destination="n2I-21-3KY" id="7d8-AB-Qxe"/>
+                <outlet property="scrollView" destination="NK3-gq-NnI" id="bvf-Ao-obN"/>
                 <outlet property="view" destination="iN0-l3-epB" id="AeR-rd-TNM"/>
             </connections>
         </placeholder>
@@ -20,35 +20,39 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9r-kf-Wwj">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NK3-gq-NnI">
+                    <rect key="frame" x="0.0" y="47" width="600" height="553"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="Yni-37-8hA">
-                            <rect key="frame" x="0.0" y="250" width="795" height="795"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yni-37-8hA">
+                            <rect key="frame" x="0.0" y="31" width="600" height="433"/>
                             <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="433" id="3l1-ml-E3M"/>
+                            </constraints>
                         </imageView>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="Yni-37-8hA" firstAttribute="leading" secondItem="K9r-kf-Wwj" secondAttribute="leading" id="2HG-w2-Ux5"/>
-                        <constraint firstItem="Yni-37-8hA" firstAttribute="trailing" secondItem="K9r-kf-Wwj" secondAttribute="trailing" constant="-1" id="Soc-oT-5zp"/>
-                        <constraint firstItem="Yni-37-8hA" firstAttribute="bottom" secondItem="K9r-kf-Wwj" secondAttribute="bottom" constant="1" id="clk-az-OQK"/>
-                        <constraint firstItem="Yni-37-8hA" firstAttribute="top" secondItem="K9r-kf-Wwj" secondAttribute="top" constant="250" id="hb0-tk-rx3"/>
+                        <constraint firstItem="Yni-37-8hA" firstAttribute="top" secondItem="NK3-gq-NnI" secondAttribute="top" constant="31" id="3OF-Rz-GwM"/>
+                        <constraint firstItem="Yni-37-8hA" firstAttribute="leading" secondItem="NK3-gq-NnI" secondAttribute="leading" id="5DT-md-DY6"/>
+                        <constraint firstItem="Yni-37-8hA" firstAttribute="width" secondItem="NK3-gq-NnI" secondAttribute="width" id="n2I-21-3KY"/>
+                        <constraint firstAttribute="bottom" secondItem="Yni-37-8hA" secondAttribute="bottom" constant="89" id="ncb-5Q-AmF"/>
+                        <constraint firstAttribute="trailing" secondItem="Yni-37-8hA" secondAttribute="trailing" id="vUY-ll-HvY"/>
                     </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="6Y9-yu-6kj"/>
+                    </connections>
                 </scrollView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="K9r-kf-Wwj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="63e-zV-fIt"/>
-                <constraint firstAttribute="trailing" secondItem="K9r-kf-Wwj" secondAttribute="trailing" id="hve-6o-wtI"/>
-                <constraint firstAttribute="bottom" secondItem="K9r-kf-Wwj" secondAttribute="bottom" id="iSw-ir-wtV"/>
-                <constraint firstItem="K9r-kf-Wwj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vKo-9B-iYD"/>
+                <constraint firstItem="NK3-gq-NnI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CVu-3b-OMR"/>
+                <constraint firstItem="NK3-gq-NnI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="47" id="DP4-XY-bVd"/>
+                <constraint firstAttribute="trailing" secondItem="NK3-gq-NnI" secondAttribute="trailing" id="DUg-h2-SVS"/>
+                <constraint firstAttribute="bottom" secondItem="NK3-gq-NnI" secondAttribute="bottom" id="WR7-cE-wVM"/>
             </constraints>
+            <point key="canvasLocation" x="568" y="334"/>
         </view>
     </objects>
-    <resources>
-        <image name="LaunchImage" width="795" height="795"/>
-    </resources>
 </document>

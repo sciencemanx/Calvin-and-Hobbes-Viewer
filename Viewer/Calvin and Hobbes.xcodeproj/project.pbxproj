@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6641AC3F1BDD8B4B0073733F /* ComicPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641AC3E1BDD8B4B0073733F /* ComicPageViewController.swift */; };
 		667BCAD31BBDB47F0001067F /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 667BCAD21BBDB47F0001067F /* Media.xcassets */; };
 		667F39C51BBCE92000CD138B /* ComicSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667F39C41BBCE92000CD138B /* ComicSelectionViewController.swift */; };
 		667F39C71BBCEA1400CD138B /* ComicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667F39C61BBCEA1400CD138B /* ComicViewController.swift */; };
-		66AD83941BBE2B770069C089 /* ComicDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AD83931BBE2B770069C089 /* ComicDownloader.swift */; settings = {ASSET_TAGS = (); }; };
-		66C7AAAE1BBE1DA3008D17F4 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7AAAD1BBE1DA3008D17F4 /* Comic.swift */; settings = {ASSET_TAGS = (); }; };
-		66C7AAB01BBE1DBE008D17F4 /* ComicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7AAAF1BBE1DBE008D17F4 /* ComicManager.swift */; settings = {ASSET_TAGS = (); }; };
+		66AD83941BBE2B770069C089 /* ComicDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AD83931BBE2B770069C089 /* ComicDownloader.swift */; };
+		66C7AAAE1BBE1DA3008D17F4 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7AAAD1BBE1DA3008D17F4 /* Comic.swift */; };
+		66C7AAB01BBE1DBE008D17F4 /* ComicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7AAAF1BBE1DBE008D17F4 /* ComicManager.swift */; };
 		66CDF79B1BB879F100B91B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF79A1BB879F100B91B62 /* AppDelegate.swift */; };
-		66CDF7A01BB879F100B91B62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CDF79E1BB879F100B91B62 /* Main.storyboard */; };
 		66CDF7A31BB879F100B91B62 /* Calvin_and_Hobbes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF7A11BB879F100B91B62 /* Calvin_and_Hobbes.xcdatamodeld */; };
 		66CDF7A81BB879F100B91B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CDF7A61BB879F100B91B62 /* LaunchScreen.storyboard */; };
 		66CDF7B31BB879F100B91B62 /* Calvin_and_HobbesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF7B21BB879F100B91B62 /* Calvin_and_HobbesTests.swift */; };
 		66CDF7BE1BB879F100B91B62 /* Calvin_and_HobbesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF7BD1BB879F100B91B62 /* Calvin_and_HobbesUITests.swift */; };
-		66F999B91BDC3945003F783B /* ComicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F999B81BDC3945003F783B /* ComicView.xib */; settings = {ASSET_TAGS = (); }; };
-		66F999BB1BDC39A9003F783B /* ComicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F999BA1BDC39A9003F783B /* ComicView.swift */; settings = {ASSET_TAGS = (); }; };
-		D6017F37433B4E1950270047 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 806FE965C7E2D2DCC53BF2AC /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		66F999B91BDC3945003F783B /* ComicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F999B81BDC3945003F783B /* ComicView.xib */; };
+		66F999BB1BDC39A9003F783B /* ComicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F999BA1BDC39A9003F783B /* ComicView.swift */; };
+		D6017F37433B4E1950270047 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 806FE965C7E2D2DCC53BF2AC /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		129AFB86383DBE8C692B1C28 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6641AC3E1BDD8B4B0073733F /* ComicPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComicPageViewController.swift; path = Controllers/ComicPageViewController.swift; sourceTree = "<group>"; };
+		6641AC401BDDCD910073733F /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Swift-Bridging-Header.h"; path = "Supporting Files/Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		667BCAD21BBDB47F0001067F /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = "Supporting Files/Media.xcassets"; sourceTree = "<group>"; };
 		667F39C41BBCE92000CD138B /* ComicSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComicSelectionViewController.swift; path = Controllers/ComicSelectionViewController.swift; sourceTree = "<group>"; };
 		667F39C61BBCEA1400CD138B /* ComicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComicViewController.swift; path = Controllers/ComicViewController.swift; sourceTree = "<group>"; };
@@ -51,7 +53,6 @@
 		66C7AAAF1BBE1DBE008D17F4 /* ComicManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComicManager.swift; path = Model/ComicManager.swift; sourceTree = "<group>"; };
 		66CDF7971BB879F100B91B62 /* Calvin and Hobbes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calvin and Hobbes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CDF79A1BB879F100B91B62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		66CDF79F1BB879F100B91B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66CDF7A21BB879F100B91B62 /* Calvin_and_Hobbes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Calvin_and_Hobbes.xcdatamodel; sourceTree = "<group>"; };
 		66CDF7A71BB879F100B91B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66CDF7A91BB879F100B91B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				66CDF7A11BB879F100B91B62 /* Calvin_and_Hobbes.xcdatamodeld */,
+				6641AC401BDDCD910073733F /* Swift-Bridging-Header.h */,
 				66CDF7A91BB879F100B91B62 /* Info.plist */,
 				667BCAD21BBDB47F0001067F /* Media.xcassets */,
 				66CDF79A1BB879F100B91B62 /* AppDelegate.swift */,
@@ -119,7 +121,6 @@
 				66CDF7A61BB879F100B91B62 /* LaunchScreen.storyboard */,
 				66F999B81BDC3945003F783B /* ComicView.xib */,
 				66F999BA1BDC39A9003F783B /* ComicView.swift */,
-				66CDF79E1BB879F100B91B62 /* Main.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -128,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				667F39C41BBCE92000CD138B /* ComicSelectionViewController.swift */,
+				6641AC3E1BDD8B4B0073733F /* ComicPageViewController.swift */,
 				667F39C61BBCEA1400CD138B /* ComicViewController.swift */,
 			);
 			name = Controllers;
@@ -312,7 +314,6 @@
 				66F999B91BDC3945003F783B /* ComicView.xib in Resources */,
 				66CDF7A81BB879F100B91B62 /* LaunchScreen.storyboard in Resources */,
 				667BCAD31BBDB47F0001067F /* Media.xcassets in Resources */,
-				66CDF7A01BB879F100B91B62 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +391,7 @@
 				667F39C51BBCE92000CD138B /* ComicSelectionViewController.swift in Sources */,
 				667F39C71BBCEA1400CD138B /* ComicViewController.swift in Sources */,
 				66CDF79B1BB879F100B91B62 /* AppDelegate.swift in Sources */,
+				6641AC3F1BDD8B4B0073733F /* ComicPageViewController.swift in Sources */,
 				66C7AAB01BBE1DBE008D17F4 /* ComicManager.swift in Sources */,
 				66F999BB1BDC39A9003F783B /* ComicView.swift in Sources */,
 				66CDF7A31BB879F100B91B62 /* Calvin_and_Hobbes.xcdatamodeld in Sources */,
@@ -428,14 +430,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		66CDF79E1BB879F100B91B62 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				66CDF79F1BB879F100B91B62 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		66CDF7A61BB879F100B91B62 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -535,11 +529,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Calvin and Hobbes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "van.prooyen.com.Calvin-and-Hobbes";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.van.prooyen.Calvin-and-Hobbes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Calvin and Hobbes/Supporting Files/Swift-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -550,11 +547,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Calvin and Hobbes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "van.prooyen.com.Calvin-and-Hobbes";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.van.prooyen.Calvin-and-Hobbes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Calvin and Hobbes/Supporting Files/Swift-Bridging-Header.h";
 			};
 			name = Release;
 		};

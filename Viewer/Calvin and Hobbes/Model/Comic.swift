@@ -15,12 +15,14 @@ class Comic {
     var image: UIImage?
     var url: String?
     
+    var onComplete: () -> () = {}
+    
     init(date: NSDate) {
         self.date = date
         ComicDownloader.getComic(date, done: {
             self.url = $0
             self.image = $1
-
+            self.onComplete()
         })
     }
     

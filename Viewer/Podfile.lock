@@ -1,12 +1,14 @@
 PODS:
-  - Alamofire (3.0.0-beta.3)
+  - Alamofire (3.1.0)
   - PDTSimpleCalendar (0.9.1)
-  - Timepiece (0.4.1)
+  - Timepiece (0.4.2)
+  - VIPhotoView (0.1)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `master`)
   - PDTSimpleCalendar (~> 0.9.1)
   - Timepiece
+  - VIPhotoView (~> 0.1)
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -15,12 +17,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 2d86d68cef07e945a7c31c58b3e8bda0ec014fc4
+    :commit: c2429d953b39ca11ebe3911be2744e0546ee4923
     :git: https://github.com/Alamofire/Alamofire.git
 
 SPEC CHECKSUMS:
-  Alamofire: c89149e58431f6f94527e8c01f920456afe39bd0
+  Alamofire: 415bd7f56197722978759078486689f7ef913dce
   PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
-  Timepiece: f79d2af3bc185d286cc22a4f525f805fed0bcc4d
+  Timepiece: cf53bb908bf542acc0e3d5f69cabfed869df4ebd
+  VIPhotoView: bdc0cf8ddadda754b451869bd3a919e8eb5c11ab
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

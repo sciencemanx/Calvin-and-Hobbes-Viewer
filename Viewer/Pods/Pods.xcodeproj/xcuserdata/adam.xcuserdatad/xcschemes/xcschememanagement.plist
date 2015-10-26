@@ -24,25 +24,35 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>VIPhotoView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>52ED9C78811CAF57BEBF70DAFC9FD125</key>
+		<key>3018775988C98F2203E6C97995ED0968</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61D99AAA5E9E5445D1CB104B187E4E2D</key>
+		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9A4D7B46FDDDBCE7061CCC6F7BE0EA25</key>
+		<key>642FEC4135DC9FF4D97C2F4623118BD1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A71A1ECA4C7BF9186D9F9253E095C70D</key>
+		<key>77AB16E71967928775ACD2706514E867</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9B93E34FB76D15D589EB3041B8255B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

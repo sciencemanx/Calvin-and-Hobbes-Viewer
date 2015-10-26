@@ -22,8 +22,7 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController, PDTSimpleCa
     }
     
     func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, didSelectDate date: NSDate!) {
-        let destination = ComicViewController()
-        destination.comic = comicManager.comicForDate(date)
+        let destination = ComicPageViewController(comicManager: comicManager, date: date)
         self.navigationController?.showViewController(destination, sender: self)
     }
     

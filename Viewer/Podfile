@@ -5,3 +5,5 @@ use_frameworks!
 pod 'Timepiece'
 pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'master'
 pod 'PDTSimpleCalendar', '~> 0.9.1'
+pod 'VIPhotoView', '~> 0.1'
+

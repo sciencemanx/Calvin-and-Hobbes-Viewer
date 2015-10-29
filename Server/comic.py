@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup as bs
 import requests as r
 import arrow
 from datetime import timedelta
+import re
 
 
 class Comic:
@@ -43,8 +44,9 @@ def get_url(date_path):  # date format: YYYY-MM-DD
     # unicode returned in page
     html_text = response.text.encode('utf-8')
     page = bs(html_text, 'html.parser')
-
-    comic_url = page.find("img", {"class": "strip"})["src"]
+    container_div = page.find("div" , id=re.compile("mutable_.*"))
+    image_tag = container_div.find("img")
+    comic_url = image_tag["src"]
 
     return comic_url
 

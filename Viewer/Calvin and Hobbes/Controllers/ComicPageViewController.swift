@@ -12,6 +12,7 @@ import Timepiece
 class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegate {
     
     var comicManager: ComicManager!
+    var nextVC: ComicViewController?
     
     init(comicManager: ComicManager, date: NSDate) {
         self.comicManager = comicManager
@@ -59,8 +60,16 @@ extension ComicPageViewController: UIPageViewControllerDataSource {
     }
     
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
-        let vc = pendingViewControllers.first as! ComicViewController
-        setTitleForDate(vc.date)
+        nextVC = pendingViewControllers.first as? ComicViewController
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if (completed) {
+            if let vc = nextVC {
+                setTitleForDate(vc.date)
+            }
+        }
+      
     }
     
 }

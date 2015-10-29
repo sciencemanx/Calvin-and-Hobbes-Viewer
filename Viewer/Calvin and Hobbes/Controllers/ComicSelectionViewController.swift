@@ -13,17 +13,30 @@ import PDTSimpleCalendar
 class ComicSelectionViewController: PDTSimpleCalendarViewController, PDTSimpleCalendarViewDelegate {
     
     let comicManager = ComicManager()
+    let defaults = NSUserDefaults.standardUserDefaults()
+    var userSelection = true // changing selectedDate programmatically calls didSelectDate which
+                             // trigger an unwanted transition
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
-        self.firstDate = comicManager.startDate
-        self.lastDate = comicManager.endDate
+        delegate = self
+        firstDate = comicManager.startDate
+        lastDate = comicManager.endDate
+        if let date = defaults.objectForKey("date") as? NSDate {
+            userSelection = false
+            selectedDate = date
+            scrollToSelectedDate(true)
+        }
     }
     
     func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, didSelectDate date: NSDate!) {
-        let destination = ComicPageViewController(comicManager: comicManager, date: date)
-        self.navigationController?.showViewController(destination, sender: self)
+        if (userSelection) {
+            defaults.setObject(date, forKey: "date")
+            
+            let destination = ComicPageViewController(comicManager: comicManager, date: date)
+            navigationController?.showViewController(destination, sender: self)
+        }
+        userSelection = true
     }
     
 }

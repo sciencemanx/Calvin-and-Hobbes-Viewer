@@ -9,6 +9,4 @@
 #ifndef Swift_Bridging_Header_h
 #define Swift_Bridging_Header_h
 
-#import <VIPhotoView/VIPhotoView.h>
-
 #endif /* Swift_Bridging_Header_h */

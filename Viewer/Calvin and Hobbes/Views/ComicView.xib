@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E61b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComicViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target">
@@ -25,13 +25,11 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yni-37-8hA">
                             <rect key="frame" x="0.0" y="31" width="600" height="433"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="433" id="3l1-ml-E3M"/>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <animations/>
                     <constraints>
                         <constraint firstItem="Yni-37-8hA" firstAttribute="top" secondItem="NK3-gq-NnI" secondAttribute="top" constant="31" id="3OF-Rz-GwM"/>
                         <constraint firstItem="Yni-37-8hA" firstAttribute="leading" secondItem="NK3-gq-NnI" secondAttribute="leading" id="5DT-md-DY6"/>
@@ -44,7 +42,6 @@
                     </connections>
                 </scrollView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="NK3-gq-NnI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CVu-3b-OMR"/>
@@ -52,7 +49,7 @@
                 <constraint firstAttribute="trailing" secondItem="NK3-gq-NnI" secondAttribute="trailing" id="DUg-h2-SVS"/>
                 <constraint firstAttribute="bottom" secondItem="NK3-gq-NnI" secondAttribute="bottom" id="WR7-cE-wVM"/>
             </constraints>
-            <point key="canvasLocation" x="568" y="334"/>
+            <point key="canvasLocation" x="539" y="334"/>
         </view>
     </objects>
 </document>

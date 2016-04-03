@@ -15,7 +15,7 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController, PDTSimpleCa
     let comicManager = ComicManager()
     let defaults = NSUserDefaults.standardUserDefaults()
     var userSelection = true // changing selectedDate programmatically calls didSelectDate which
-                             // trigger an unwanted transition
+                             // triggers an unwanted transition
     
     override func viewDidLoad() {
         super.viewDidLoad()

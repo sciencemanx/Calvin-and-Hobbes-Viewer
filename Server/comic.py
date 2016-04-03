@@ -39,8 +39,7 @@ def get_url(date_path):  # date format: YYYY-MM-DD
     url = "http://www.gocomics.com/calvinandhobbes/{}".format(date_path)
     print(url)
     headers = {"User-Agent": "Mozilla/5.0"}
-    response = r.get(url,
-                     headers=headers)
+    response = r.get(url, headers=headers)
     # unicode returned in page
     html_text = response.text.encode('utf-8')
     page = bs(html_text, 'html.parser')

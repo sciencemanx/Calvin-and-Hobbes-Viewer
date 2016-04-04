@@ -13,11 +13,20 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
     
     var comicManager: ComicManager!
     var nextVC: ComicViewController?
+    var date: NSDate!
+//    let defaults = NSUserDefaults.standardUserDefaults()
     
     init(comicManager: ComicManager, date: NSDate) {
-        self.comicManager = comicManager
-        
         super.init(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        initialize(comicManager, date: date)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    func initialize(comicManager: ComicManager, date: NSDate) {
+        self.comicManager = comicManager
         
         self.delegate = self
         self.dataSource = self
@@ -27,17 +36,18 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
         let vc = viewControllerForDate(date)
         setViewControllers([vc!], direction: .Forward, animated: true, completion: nil)
     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     func viewControllerForDate(date: NSDate) -> ComicViewController? {
         if (date < comicManager.startDate || date > comicManager.endDate) {
             return nil
         } else {
             let comic = comicManager.comicForDate(date)
-            return ComicViewController(comic: comic, date: date)
+            if let comicVC = storyboard?.instantiateViewControllerWithIdentifier("ComicViewController")
+                as? ComicViewController {
+                comicVC.initialize(comic, date)
+                return comicVC
+            }
+            return nil
         }
     }
     
@@ -67,9 +77,9 @@ extension ComicPageViewController: UIPageViewControllerDataSource {
         if (completed) {
             if let vc = nextVC {
                 setTitleForDate(vc.date)
+//                defaults.setObject(date, forKey: "date")
             }
         }
-      
     }
     
 }

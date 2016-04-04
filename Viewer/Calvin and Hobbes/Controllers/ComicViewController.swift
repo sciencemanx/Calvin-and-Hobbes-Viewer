@@ -10,27 +10,28 @@ import UIKit
 
 class ComicViewController: UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var comicImageView: UIImageView!
-    
-    @IBOutlet weak var imageTopPadding: NSLayoutConstraint!
-    @IBOutlet weak var imageBottomPadding: NSLayoutConstraint!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
-    @IBOutlet weak var imageWidth: NSLayoutConstraint!
-    
-    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
     
     var comic: Comic!
     var date: NSDate!
     
     init(comic: Comic, date: NSDate) {
-        self.comic = comic
-        self.date = date
         super.init(nibName: "ComicView", bundle: nil)
+        initialize(comic, date)
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    func initialize(comic: Comic, _ date: NSDate) {
+        self.comic = comic
+        self.date = date
     }
     
     override func viewDidLoad() {
@@ -39,6 +40,7 @@ class ComicViewController: UIViewController {
         if let image = comic?.image {
             self.comicImageView.image = image
         } else {
+            let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
             spinner.color = .blackColor()
             spinner.hidesWhenStopped = true
             view.addSubview(spinner)
@@ -47,42 +49,68 @@ class ComicViewController: UIViewController {
             spinner.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
             comic?.onComplete = {
                 self.comicImageView.image = self.comic?.image
-                self.spinner.stopAnimating()
-                self.updateConstraints()
+                spinner.stopAnimating()
+                self.updateMinZoomScaleForSize(self.viewSizeWithoutInsets())
+                self.updateConstraintsForSize(self.viewSizeWithoutInsets())
             }
         }
+        self.edgesForExtendedLayout = UIRectEdge.None
     }
     
     override func viewDidAppear(animated: Bool) {
-        updateConstraints()
+        updateMinZoomScaleForSize(viewSizeWithoutInsets())
+        updateConstraintsForSize(viewSizeWithoutInsets())
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        scrollView.zoomScale = 1
-    }
-    
-    func updateConstraints() {
-        if let image = comicImageView.image {
-            let bounds = comicImageView.bounds
-            let width = bounds.size.width
-            imageHeight.constant =  width / image.size.width * image.size.height
-            scrollView.contentSize = comicImageView.bounds.size
-            view.layoutIfNeeded()
-        }
-        let bounds = UIScreen.mainScreen().bounds
-        spinner.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateMinZoomScaleForSize(viewSizeWithoutInsets())
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        updateConstraints()
+        updateConstraintsForSize(viewSizeWithoutInsets())
+    }
+    
+    
+    // MARK: - Update Constraints
+    
+    private func viewSizeWithoutInsets() -> CGSize {
+        var size = view.bounds.size
+        size.height -= UIApplication.sharedApplication().statusBarFrame.size.height
+        if let navController = self.navigationController {
+            size.height -= navController.navigationBar.frame.size.height
+        }
+        return size
+    }
+    
+    func updateConstraintsForSize(size: CGSize) {
+        let yOffset = max(0, (size.height - comicImageView.frame.height) / 2)
+        imageViewTopConstraint.constant = yOffset
+        imageViewBottomConstraint.constant = yOffset
+        
+        let xOffset = max(0, (size.width - comicImageView.frame.width) / 2)
+        imageViewLeadingConstraint.constant = xOffset
+        imageViewTrailingConstraint.constant = xOffset
+        
+        view.layoutIfNeeded()
+    }
+    
+    private func updateMinZoomScaleForSize(size: CGSize) {
+        let widthScale = size.width / comicImageView.bounds.width
+        let heightScale = size.height / comicImageView.bounds.height
+        let minScale = min(widthScale, heightScale)
+        
+        scrollView.minimumZoomScale = minScale
+        scrollView.zoomScale = minScale
     }
     
 }
 
+
 extension ComicViewController: UIScrollViewDelegate {
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-//        updateConstraints()
+        updateConstraintsForSize(viewSizeWithoutInsets())
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {

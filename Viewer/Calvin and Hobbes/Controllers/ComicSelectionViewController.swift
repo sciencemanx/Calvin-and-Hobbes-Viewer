@@ -10,7 +10,7 @@ import UIKit
 import Timepiece
 import PDTSimpleCalendar
 
-class ComicSelectionViewController: PDTSimpleCalendarViewController, PDTSimpleCalendarViewDelegate {
+class ComicSelectionViewController: PDTSimpleCalendarViewController {
     
     let comicManager = ComicManager()
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -25,16 +25,28 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController, PDTSimpleCa
         if let date = defaults.objectForKey("date") as? NSDate {
             userSelection = false
             selectedDate = date
-            scrollToSelectedDate(true)
+            scrollToSelectedDate(false)
+        }
+        self.edgesForExtendedLayout = UIRectEdge.None
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "ShowComic") {
+            let vc = segue.destinationViewController as! ComicPageViewController
+            let date = defaults.objectForKey("date") as! NSDate
+            vc.initialize(comicManager, date: date)
         }
     }
+    
+}
+
+extension ComicSelectionViewController: PDTSimpleCalendarViewDelegate {
     
     func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, didSelectDate date: NSDate!) {
         if (userSelection) {
             defaults.setObject(date, forKey: "date")
             
-            let destination = ComicPageViewController(comicManager: comicManager, date: date)
-            navigationController?.showViewController(destination, sender: self)
+            self.performSegueWithIdentifier("ShowComic", sender: self)
         }
         userSelection = true
     }

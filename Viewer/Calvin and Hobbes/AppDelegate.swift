@@ -14,16 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {        
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.backgroundColor = .whiteColor()
-        
-        let picker = ComicSelectionViewController()
-        let navController = UINavigationController.init(rootViewController: picker)
-        
-        self.window?.rootViewController = navController
-        self.window?.makeKeyAndVisible()
-        
+    func application(application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         return true
     }
 

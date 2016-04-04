@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6641AC3F1BDD8B4B0073733F /* ComicPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641AC3E1BDD8B4B0073733F /* ComicPageViewController.swift */; };
 		666A694C1CB179B5008E1490 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 666A694B1CB179B5008E1490 /* Main.storyboard */; };
+		666A698E1CB1ED1F008E1490 /* ComicSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666A698D1CB1ED1F008E1490 /* ComicSearchViewController.swift */; };
 		667BCAD31BBDB47F0001067F /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 667BCAD21BBDB47F0001067F /* Media.xcassets */; };
 		667F39C51BBCE92000CD138B /* ComicSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667F39C41BBCE92000CD138B /* ComicSelectionViewController.swift */; };
 		667F39C71BBCEA1400CD138B /* ComicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667F39C61BBCEA1400CD138B /* ComicViewController.swift */; };
@@ -45,6 +46,7 @@
 		6641AC3E1BDD8B4B0073733F /* ComicPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComicPageViewController.swift; path = Controllers/ComicPageViewController.swift; sourceTree = "<group>"; };
 		6641AC401BDDCD910073733F /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Swift-Bridging-Header.h"; path = "Supporting Files/Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		666A694B1CB179B5008E1490 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		666A698D1CB1ED1F008E1490 /* ComicSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComicSearchViewController.swift; path = Controllers/ComicSearchViewController.swift; sourceTree = "<group>"; };
 		667BCAD21BBDB47F0001067F /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = "Supporting Files/Media.xcassets"; sourceTree = "<group>"; };
 		667F39C41BBCE92000CD138B /* ComicSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComicSelectionViewController.swift; path = Controllers/ComicSelectionViewController.swift; sourceTree = "<group>"; };
 		667F39C61BBCEA1400CD138B /* ComicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComicViewController.swift; path = Controllers/ComicViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				667F39C41BBCE92000CD138B /* ComicSelectionViewController.swift */,
+				666A698D1CB1ED1F008E1490 /* ComicSearchViewController.swift */,
 				6641AC3E1BDD8B4B0073733F /* ComicPageViewController.swift */,
 				667F39C61BBCEA1400CD138B /* ComicViewController.swift */,
 			);
@@ -389,6 +392,7 @@
 				667F39C51BBCE92000CD138B /* ComicSelectionViewController.swift in Sources */,
 				667F39C71BBCEA1400CD138B /* ComicViewController.swift in Sources */,
 				66CDF79B1BB879F100B91B62 /* AppDelegate.swift in Sources */,
+				666A698E1CB1ED1F008E1490 /* ComicSearchViewController.swift in Sources */,
 				6641AC3F1BDD8B4B0073733F /* ComicPageViewController.swift in Sources */,
 				66C7AAB01BBE1DBE008D17F4 /* ComicManager.swift in Sources */,
 				66CDF7A31BB879F100B91B62 /* Calvin_and_Hobbes.xcdatamodeld in Sources */,

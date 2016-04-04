@@ -31,6 +31,9 @@
                         </view>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="xHR-03-NDX">
                             <color key="tintColor" red="0.97271645070000001" green="0.44665887949999999" blue="0.03173065186" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="8yX-HO-OEf" kind="show" id="3IK-5F-aZe"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -48,6 +51,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wSS-Fi-IZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2223" y="390"/>
+        </scene>
+        <!--Comic Search View Controller-->
+        <scene sceneID="ldm-B4-R9F">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="8yX-HO-OEf" customClass="ComicSearchViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cuH-uz-XQJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ktM-cN-R1x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4El-pN-Nfa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fsH-S3-ZlC">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="bzs-81-xwk">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="8yX-HO-OEf" id="L0c-qo-kvi"/>
+                                    </connections>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResult" id="Rhj-45-XMg">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhj-45-XMg" id="q2T-rE-Quu">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8yX-HO-OEf" id="Mh3-w3-bdC"/>
+                                    <outlet property="delegate" destination="8yX-HO-OEf" id="zjr-B3-4dK"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fsH-S3-ZlC" secondAttribute="trailing" id="Ndg-Rr-KN5"/>
+                            <constraint firstItem="ktM-cN-R1x" firstAttribute="top" secondItem="fsH-S3-ZlC" secondAttribute="bottom" id="amY-Kx-2mQ"/>
+                            <constraint firstItem="fsH-S3-ZlC" firstAttribute="leading" secondItem="4El-pN-Nfa" secondAttribute="leading" id="kpC-iU-E2Q"/>
+                            <constraint firstItem="fsH-S3-ZlC" firstAttribute="top" secondItem="cuH-uz-XQJ" secondAttribute="bottom" id="meZ-qh-t9o"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="fsH-S3-ZlC" id="BUU-Yv-gxX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8e-F0-yst" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2223" y="1109"/>
         </scene>
         <!--Comic View-->
         <scene sceneID="0o3-LF-Orv">

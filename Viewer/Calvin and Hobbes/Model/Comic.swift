@@ -19,7 +19,7 @@ class Comic {
     
     init(date: NSDate) {
         self.date = date
-        ComicDownloader.getComic(date, done: {
+        ComicDownloader.getComic(date, completionHandler: {
             self.url = $0
             self.image = $1
             self.onComplete()

@@ -7,17 +7,49 @@
 //
 
 import UIKit
+import Timepiece
 
 class ComicSearchViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    var results: [String] = []
+    var comicManager: ComicManager!
+    var results: [SearchResult] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "ShowComic") {
+            let date = results[tableView.indexPathForSelectedRow!.row].date.dateFromFormat("yyyy-MM-dd")!
+            print(date)
+            let vc = segue.destinationViewController as! ComicPageViewController
+            vc.initialize(comicManager, date: date)
+        }
+    }
+    
+    // TODO: Move to its own class
+    
+    func attributeString(string: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString()
+        let boldAttrs = [NSFontAttributeName: UIFont.boldSystemFontOfSize(15)]
+        var isBold = false
+        for c in string.characters {
+            if (c == "_") {
+                isBold = !isBold
+            }
+            else {
+                if (isBold) {
+                    let boldString = NSMutableAttributedString(string: String(c), attributes: boldAttrs)
+                    attributedString.appendAttributedString(boldString)
+                }
+                else {
+                    let normalString = NSMutableAttributedString(string: String(c))
+                    attributedString.appendAttributedString(normalString)
+                }
+            }
+        }
+        return attributedString
     }
 
 }
+
 
 extension ComicSearchViewController: UITableViewDataSource {
     
@@ -32,16 +64,18 @@ extension ComicSearchViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SearchResult", forIndexPath: indexPath)
         
-        cell.textLabel?.text = results[indexPath.row]
+        cell.textLabel?.attributedText = attributeString(results[indexPath.row].snippet)
+        cell.detailTextLabel?.text = results[indexPath.row].date
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        self.performSegueWithIdentifier("ShowComic", sender: self)
     }
     
 }
+
 
 extension ComicSearchViewController: UISearchBarDelegate {
     

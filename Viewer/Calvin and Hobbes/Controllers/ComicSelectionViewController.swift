@@ -36,6 +36,12 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
             let date = defaults.objectForKey("date") as! NSDate
             vc.initialize(comicManager, date: date)
         }
+        if (segue.identifier == "SearchComics") {
+            let vc = segue.destinationViewController as! ComicSearchViewController
+            vc.comicManager = comicManager
+            let date = NSDate()
+            date.day
+        }
     }
     
 }

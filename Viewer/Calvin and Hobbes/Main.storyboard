@@ -32,7 +32,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="xHR-03-NDX">
                             <color key="tintColor" red="0.97271645070000001" green="0.44665887949999999" blue="0.03173065186" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="8yX-HO-OEf" kind="show" id="3IK-5F-aZe"/>
+                                <segue destination="8yX-HO-OEf" kind="show" identifier="SearchComics" id="3IK-5F-aZe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -76,12 +76,28 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResult" id="Rhj-45-XMg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResult" textLabel="pQq-9V-23u" detailTextLabel="oV3-BR-uhk" style="IBUITableViewCellStyleSubtitle" id="Rhj-45-XMg">
                                         <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhj-45-XMg" id="q2T-rE-Quu">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pQq-9V-23u">
+                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oV3-BR-uhk">
+                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -102,6 +118,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="fsH-S3-ZlC" id="BUU-Yv-gxX"/>
+                        <segue destination="zA7-Ek-LVM" kind="show" identifier="ShowComic" id="PL8-E8-ncz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8e-F0-yst" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,4 +202,7 @@
         <image name="CalvinandHobbesTitle" width="722" height="103"/>
         <image name="DefaultComicImage" width="960" height="540"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="PL8-E8-ncz"/>
+    </inferredMetricsTieBreakers>
 </document>

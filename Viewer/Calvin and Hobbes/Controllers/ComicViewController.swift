@@ -19,11 +19,6 @@ class ComicViewController: UIViewController {
     
     var comic: Comic!
     var date: NSDate!
-    
-    init(comic: Comic, date: NSDate) {
-        super.init(nibName: "ComicView", bundle: nil)
-        initialize(comic, date)
-    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

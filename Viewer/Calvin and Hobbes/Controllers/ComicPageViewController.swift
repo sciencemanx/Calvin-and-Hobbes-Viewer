@@ -14,7 +14,6 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
     var comicManager: ComicManager!
     var nextVC: ComicViewController?
     var date: NSDate!
-//    let defaults = NSUserDefaults.standardUserDefaults()
     
     init(comicManager: ComicManager, date: NSDate) {
         super.init(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
@@ -77,7 +76,6 @@ extension ComicPageViewController: UIPageViewControllerDataSource {
         if (completed) {
             if let vc = nextVC {
                 setTitleForDate(vc.date)
-//                defaults.setObject(date, forKey: "date")
             }
         }
     }

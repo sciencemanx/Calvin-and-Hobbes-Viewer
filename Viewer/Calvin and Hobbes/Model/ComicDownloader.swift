@@ -36,12 +36,14 @@ class ComicDownloader {
         }
     }
     
-    class func searchComics(query: String, completionHandler: ([String]) -> ()) {
+    class func searchComics(query: String, completionHandler: ([SearchResult]) -> ()) {
         let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         Alamofire.request(.GET, baseURL + "/search/" + escapedQuery)
         .responseJSON { response in
-            if let results = response.result.value as? [String] {
-                completionHandler(results)
+            if let results = response.result.value as? [[String: String]] {
+                completionHandler(results.map({ result in
+                    return SearchResult(date: result["date"]!, snippet: result["text"]!)
+                }))
             }
         }
     }

@@ -3,39 +3,69 @@ from collections import defaultdict, Counter
 from flask_restful import Resource
 import arrow
 
-strip = re.compile(r'\(|\)|\'|\?|,|\.|!')
-def preprocess(words):
+sep = re.compile(r'\n| ')
+def separate_words(text):
+	return sep.split(text)
+
+strip = re.compile(r'\(|\)|\'|\"|\?|,|\.|!')
+def preprocess(text):
+	words = separate_words(text)
 	basic_words = (strip.sub('', word) for word in words)
 	return (word.lower() for word in basic_words)
 
-sep = re.compile(r'\n| ')
-def ngrams(corpus):
-	words = sep.split(corpus)
-	tokens = list(preprocess(words))
-	return set(zip(tokens, tokens[1:]))
+def ngrams(corpus, n=2):
+	tokens = list(preprocess(corpus))
+	offsets = (tokens[offset:] for offset in range(n))
+	return set(zip(*offsets))
+
+def sublist_index(lst, sublst):
+	n = len(sublst)
+	matches = [sublst == lst[i:i+n] for i in range(len(lst))]
+	return matches.index(True) if True in matches else -1
+
+import itertools
+def select_text(text, query):
+	cleaned_words = list(preprocess(query))
+	cleaned_text_words = list(preprocess(text))
+	words_combinations = list(itertools.chain.from_iterable(ngrams(query, n) for n in range(2, len(cleaned_words) + 1)))
+	for words_combination in reversed(words_combinations):
+		start_location = sublist_index(cleaned_text_words, cleaned_words)
+		if start_location != -1:
+			text_words = list(separate_words(text))
+			lo = max(0, start_location - 5)
+			hi = min(len(text_words) - 1, start_location + len(words_combination) + 5)
+			first_words = ' '.join(text_words[lo: start_location])
+			last_words = ' '.join(text_words[start_location + len(words_combination): hi])
+			middle_words = ' '.join(text_words[start_location: start_location + len(words_combination)])
+			return '{} _{}_ {}'.format(first_words, middle_words, last_words)
+	return 'server error'
+
 
 class invertedindex:
 	def __init__(self):
 		self.index = defaultdict(list)
+		self.texts = {}
 
-	def __setitem__(self, title, text):
-		self.add(title, text)
+	def __setitem__(self, date, text):
+		self.add(date, text)
 
 	def __getitem__(self, text):
 		return self.query(text)
 
-	def add(self, title, text):
+	def add(self, date, text):
+		self.texts[date] = text
 		bigrams = ngrams(text)
 		for bigram in bigrams:
 			titles = self.index[bigram]
-			titles.append(title)
+			titles.append(date)
 
 	def query(self, text, n=10):
 		bigrams = ngrams(text)
 		results = Counter()
 		for bigram in bigrams:
 			results.update(self.index[bigram])
-		return [date for date, count in results.most_common(n)]
+		return [(date, self.texts[date])
+				for date, count in results.most_common(n)]
 
 with open('Server/calvin_transcript.txt') as f:
 	text = f.read()
@@ -49,4 +79,5 @@ for comic, text in comics:
 
 class SearchResource(Resource):
 	def get(self, query):
-		return [date.format('YYYY-MM-DD') for date in index.query(query)]
+		return [{"date": date.format('YYYY-MM-DD'), "text": select_text(text, query)}
+				for date, text in index.query(query)]

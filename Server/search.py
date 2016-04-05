@@ -20,14 +20,15 @@ def ngrams(corpus, n=2):
 
 def sublist_index(lst, sublst):
 	n = len(sublst)
+	lst, sublst = list(lst), list(sublst)
 	matches = [sublst == lst[i:i+n] for i in range(len(lst))]
 	return matches.index(True) if True in matches else -1
 
-import itertools
+from itertools import chain
 def select_text(text, query):
 	cleaned_words = list(preprocess(query))
 	cleaned_text_words = list(preprocess(text))
-	words_combinations = list(itertools.chain.from_iterable(ngrams(query, n) for n in range(2, len(cleaned_words) + 1)))
+	words_combinations = list(chain.from_iterable(ngrams(query, n) for n in range(2, len(cleaned_words) + 1)))
 	for words_combination in reversed(words_combinations):
 		start_location = sublist_index(cleaned_text_words, words_combination)
 		if start_location != -1:

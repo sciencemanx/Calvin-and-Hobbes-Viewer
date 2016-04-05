@@ -29,7 +29,7 @@ def select_text(text, query):
 	cleaned_text_words = list(preprocess(text))
 	words_combinations = list(itertools.chain.from_iterable(ngrams(query, n) for n in range(2, len(cleaned_words) + 1)))
 	for words_combination in reversed(words_combinations):
-		start_location = sublist_index(cleaned_text_words, cleaned_words)
+		start_location = sublist_index(cleaned_text_words, words_combination)
 		if start_location != -1:
 			text_words = list(separate_words(text))
 			lo = max(0, start_location - 5)
@@ -38,7 +38,6 @@ def select_text(text, query):
 			last_words = ' '.join(text_words[start_location + len(words_combination): hi])
 			middle_words = ' '.join(text_words[start_location: start_location + len(words_combination)])
 			return '{} _{}_ {}'.format(first_words, middle_words, last_words)
-	return 'server error'
 
 
 class invertedindex:

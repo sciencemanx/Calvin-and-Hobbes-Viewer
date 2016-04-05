@@ -28,6 +28,7 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
             scrollToSelectedDate(false)
         }
         self.edgesForExtendedLayout = UIRectEdge.None
+        self.navigationController?.navigationBar.tintColor = .orangeColor()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -45,6 +46,7 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
     }
     
 }
+
 
 extension ComicSelectionViewController: PDTSimpleCalendarViewDelegate {
     

@@ -71,6 +71,7 @@ extension ComicSearchViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier("ShowComic", sender: self)
     }
     
@@ -84,6 +85,10 @@ extension ComicSearchViewController: UISearchBarDelegate {
             self.results = results
             self.tableView.reloadData()
         })
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
 }

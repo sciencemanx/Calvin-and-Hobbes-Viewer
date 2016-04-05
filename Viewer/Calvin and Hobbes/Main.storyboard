@@ -184,6 +184,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="g9h-tr-XVy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.95842939615249634" green="0.91792458295822144" blue="0.80682218074798584" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.97271645070000001" green="0.44665887949999999" blue="0.03173065186" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -203,6 +204,6 @@
         <image name="DefaultComicImage" width="960" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PL8-E8-ncz"/>
+        <segue reference="3LA-Uy-fLD"/>
     </inferredMetricsTieBreakers>
 </document>

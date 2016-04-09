@@ -22,13 +22,17 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
         delegate = self
         firstDate = comicManager.startDate
         lastDate = comicManager.endDate
-        if let date = defaults.objectForKey("date") as? NSDate {
-            userSelection = false
-            selectedDate = date
-            scrollToSelectedDate(false)
-        }
+        
         self.edgesForExtendedLayout = UIRectEdge.None
         self.navigationController?.navigationBar.tintColor = .orangeColor()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if let date = self.defaults.objectForKey("date") as? NSDate {
+            self.userSelection = false
+            self.selectedDate = date
+            self.scrollToSelectedDate(false)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -40,8 +44,6 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
         if (segue.identifier == "SearchComics") {
             let vc = segue.destinationViewController as! ComicSearchViewController
             vc.comicManager = comicManager
-            let date = NSDate()
-            date.day
         }
     }
     

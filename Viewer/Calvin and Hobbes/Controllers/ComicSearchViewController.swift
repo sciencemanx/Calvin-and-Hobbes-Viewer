@@ -71,8 +71,8 @@ extension ComicSearchViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier("ShowComic", sender: self)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
 }

@@ -19,6 +19,7 @@ class ComicViewController: UIViewController {
     
     var comic: Comic!
     var date: NSDate!
+    let defaults = NSUserDefaults.standardUserDefaults()
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -45,16 +46,17 @@ class ComicViewController: UIViewController {
             comic?.onComplete = {
                 self.comicImageView.image = self.comic?.image
                 spinner.stopAnimating()
-                self.updateMinZoomScaleForSize(self.viewSizeWithoutInsets())
                 self.updateConstraintsForSize(self.viewSizeWithoutInsets())
+                self.updateMinZoomScaleForSize(self.viewSizeWithoutInsets())
             }
         }
         self.edgesForExtendedLayout = UIRectEdge.None
     }
     
     override func viewDidAppear(animated: Bool) {
-        updateMinZoomScaleForSize(viewSizeWithoutInsets())
+        defaults.setObject(date, forKey: "date")
         updateConstraintsForSize(viewSizeWithoutInsets())
+        updateMinZoomScaleForSize(viewSizeWithoutInsets())
     }
     
     override func viewDidLayoutSubviews() {

@@ -1,4 +1,4 @@
-<img src="logo.png" width="100px" align="right />
+<img src="logo.png" width="150px" align="right" />
 # Calvin and Hobbes Viewer
 
 > an iOS app for reading Calvin and Hobbes comics

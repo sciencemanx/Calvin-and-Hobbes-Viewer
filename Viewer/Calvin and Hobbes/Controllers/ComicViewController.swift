@@ -61,6 +61,7 @@ class ComicViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        updateConstraintsForSize(viewSizeWithoutInsets())
         updateMinZoomScaleForSize(viewSizeWithoutInsets())
     }
     

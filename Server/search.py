@@ -28,7 +28,8 @@ from itertools import chain
 def select_text(text, query):
 	cleaned_words = list(preprocess(query))
 	cleaned_text_words = list(preprocess(text))
-	words_combinations = list(chain.from_iterable(ngrams(query, n) for n in range(2, len(cleaned_words) + 1)))
+	words_combinations = list(chain.from_iterable(ngrams(query, n) 
+														for n in range(1, len(cleaned_words) + 1)))
 	for words_combination in reversed(words_combinations):
 		start_location = sublist_index(cleaned_text_words, words_combination)
 		if start_location != -1:
@@ -42,9 +43,11 @@ def select_text(text, query):
 
 
 class invertedindex:
-	def __init__(self):
+	def __init__(self, accuracy=8):
 		self.index = defaultdict(list)
 		self.texts = {}
+		self.text_lengths = {}
+		self.accuracy = accuracy
 
 	def __setitem__(self, date, text):
 		self.add(date, text)
@@ -54,30 +57,29 @@ class invertedindex:
 
 	def add(self, date, text):
 		self.texts[date] = text
-		bigrams = ngrams(text)
-		for bigram in bigrams:
-			titles = self.index[bigram]
-			titles.append(date)
+		self.text_lengths[date] = len(separate_words(text))
+		for n in range(1, self.accuracy):
+			for ngram in ngrams(text, n):
+				dates = self.index[ngram]
+				dates.append(date)
 
-	def query(self, text, n=10):
+	def query(self, text, count=10):
 		bigrams = ngrams(text)
 		results = Counter()
-		for bigram in bigrams:
-			results.update(self.index[bigram])
+		for n in range(1, self.accuracy):
+			for ngram in ngrams(text, n):
+				results.update(self.index[ngram] * (n ** 2))
 		return [(date, self.texts[date])
-				for date, count in results.most_common(n)]
+				for date, count in results.most_common(count)]
 
-with open('Server/calvin_transcript.txt') as f:
-	text = f.read()
+def create_index(filename, accuracy=8):
+	with open(filename, 'r') as f:
+		text = f.read()
 
-comics_sep = re.compile(r'(ch[\d]{6})(?:: )(.*?)(?= ch[0-9]{6})')
-comics = comics_sep.findall(text)
-index = invertedindex()
-for comic, text in comics:
-	date = arrow.get(comic, 'YYMMDD')
-	index[date] = text
-
-class SearchResource(Resource):
-	def get(self, query):
-		return [{"date": date.format('YYYY-MM-DD'), "text": select_text(text, query)}
-				for date, text in index.query(query)]
+	comics_sep = re.compile(r'(ch[\d]{6})(?:: )(.*?)(?= ch[0-9]{6})')
+	comics = comics_sep.findall(text)
+	index = invertedindex(accuracy)
+	for comic, text in comics:
+		date = arrow.get(comic, 'YYMMDD')
+		index[date] = text
+	return index

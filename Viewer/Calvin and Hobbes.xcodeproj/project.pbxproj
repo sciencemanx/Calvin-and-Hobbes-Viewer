@@ -21,7 +21,6 @@
 		66CDF7A31BB879F100B91B62 /* Calvin_and_Hobbes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF7A11BB879F100B91B62 /* Calvin_and_Hobbes.xcdatamodeld */; };
 		66CDF7A81BB879F100B91B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CDF7A61BB879F100B91B62 /* LaunchScreen.storyboard */; };
 		66CDF7B31BB879F100B91B62 /* Calvin_and_HobbesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF7B21BB879F100B91B62 /* Calvin_and_HobbesTests.swift */; };
-		66CDF7BE1BB879F100B91B62 /* Calvin_and_HobbesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF7BD1BB879F100B91B62 /* Calvin_and_HobbesUITests.swift */; };
 		D6017F37433B4E1950270047 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 806FE965C7E2D2DCC53BF2AC /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,8 +63,6 @@
 		66CDF7B21BB879F100B91B62 /* Calvin_and_HobbesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calvin_and_HobbesTests.swift; sourceTree = "<group>"; };
 		66CDF7B41BB879F100B91B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66CDF7B91BB879F100B91B62 /* Calvin and HobbesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calvin and HobbesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66CDF7BD1BB879F100B91B62 /* Calvin_and_HobbesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calvin_and_HobbesUITests.swift; sourceTree = "<group>"; };
-		66CDF7BF1BB879F100B91B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68A066220DE41A60DDBEB800 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		806FE965C7E2D2DCC53BF2AC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -153,7 +150,6 @@
 			children = (
 				66CDF7991BB879F100B91B62 /* Calvin and Hobbes */,
 				66CDF7B11BB879F100B91B62 /* Calvin and HobbesTests */,
-				66CDF7BC1BB879F100B91B62 /* Calvin and HobbesUITests */,
 				66CDF7981BB879F100B91B62 /* Products */,
 				4D9DC2E8A379DDBFC6F39162 /* Pods */,
 				6CEDAF99D83B1CCF3C7C7782 /* Frameworks */,
@@ -188,15 +184,6 @@
 				66CDF7B41BB879F100B91B62 /* Info.plist */,
 			);
 			path = "Calvin and HobbesTests";
-			sourceTree = "<group>";
-		};
-		66CDF7BC1BB879F100B91B62 /* Calvin and HobbesUITests */ = {
-			isa = PBXGroup;
-			children = (
-				66CDF7BD1BB879F100B91B62 /* Calvin_and_HobbesUITests.swift */,
-				66CDF7BF1BB879F100B91B62 /* Info.plist */,
-			);
-			path = "Calvin and HobbesUITests";
 			sourceTree = "<group>";
 		};
 		6CEDAF99D83B1CCF3C7C7782 /* Frameworks */ = {
@@ -423,7 +410,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66CDF7BE1BB879F100B91B62 /* Calvin_and_HobbesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

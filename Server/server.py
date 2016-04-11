@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_restful import Resource, Api
 
-from comic import Comic
-import search
+from Server.comic import Comic
+import Server.search
 
 app = Flask(__name__)
 api = Api(app)

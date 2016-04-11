@@ -3,10 +3,10 @@
 from flask import Flask
 from flask_restful import Resource, Api
 
-if __name__ == '__main__':
+if __name__ == '__main__': # run as python Server/server.py
   from comic import Comic
   import search
-else:
+else: # run as heroku local
   from .comic import Comic
   from . import search
 
@@ -35,16 +35,15 @@ class SearchResource(Resource):
 
 def setup():
   print('creating index')
-  index = search.create_index('Server/calvin_transcript.txt', 8)
+  index = search.create_index('Server/calvin_transcript.txt', 5)
   print('finished creating index, now registering api resources')
   api.add_resource(ComicResource,
                    '/comic/<string:date>')  # date format: YYYY-MM-DD
   api.add_resource(SearchResource,
                    '/search/<string:query>',
                    resource_class_args=(index,))
-  print('starting server')
 
 if __name__ == '__main__':
-  # setup()
-  # app.run(debug=True)
-  pass
+  setup()
+  print('starting server')
+  app.run(debug=True)

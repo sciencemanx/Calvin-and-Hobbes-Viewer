@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import re
 from collections import defaultdict, Counter
 from flask_restful import Resource

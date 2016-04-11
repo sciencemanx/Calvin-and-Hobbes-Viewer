@@ -1,8 +1,15 @@
+#!/usr/bin/env python3
+
 from flask import Flask
 from flask_restful import Resource, Api
 
-from Server.comic import Comic
-import Server.search
+if __name__ == '__main__':
+  from comic import Comic
+  import search
+else:
+  from .comic import Comic
+  from . import search
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,7 +33,7 @@ class SearchResource(Resource):
     return [{'date': date.format('YYYY-MM-DD'), 'text': search.select_text(text, query)}
             for date, text in self.index.query(query)]
 
-if __name__ == '__main__':
+def main():
   print('creating index')
   index = search.create_index('Server/calvin_transcript.txt', 8)
   print('finished creating index, now registering api resources')
@@ -37,3 +44,6 @@ if __name__ == '__main__':
                    resource_class_args=(index,))
   print('starting server')
   app.run()
+
+if __name__ == '__main__':
+  main()

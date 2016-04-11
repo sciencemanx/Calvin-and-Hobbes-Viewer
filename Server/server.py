@@ -33,7 +33,7 @@ class SearchResource(Resource):
     return [{'date': date.format('YYYY-MM-DD'), 'text': search.select_text(text, query)}
             for date, text in self.index.query(query)]
 
-def main():
+def setup():
   print('creating index')
   index = search.create_index('Server/calvin_transcript.txt', 8)
   print('finished creating index, now registering api resources')
@@ -43,7 +43,8 @@ def main():
                    '/search/<string:query>',
                    resource_class_args=(index,))
   print('starting server')
-  app.run()
 
 if __name__ == '__main__':
-  main()
+  # setup()
+  # app.run(debug=True)
+  pass

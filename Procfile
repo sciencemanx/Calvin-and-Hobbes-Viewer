@@ -1,1 +1,1 @@
-web: gunicorn heroku_run:run --log-file=-
+web: gunicorn heroku_run:app --log-file=-

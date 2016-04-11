@@ -1,6 +1,5 @@
-from Server.server import main
+from Server.server import setup, app
 
-def run(environ, start_response):
-	print(dir())
-	main()
+setup()
+
 

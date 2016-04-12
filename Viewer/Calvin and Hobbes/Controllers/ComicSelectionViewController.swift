@@ -14,6 +14,7 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
     
     let comicManager = ComicManager()
     let defaults = NSUserDefaults.standardUserDefaults()
+    let orange = UIColor(red: 255/255, green: 116/255, blue: 0, alpha: 1)
     var userSelection = true // changing selectedDate programmatically calls didSelectDate which
                              // triggers an unwanted transition
     
@@ -24,7 +25,7 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
         lastDate = comicManager.endDate
         
         self.edgesForExtendedLayout = UIRectEdge.None
-        self.navigationController?.navigationBar.tintColor = .orangeColor()
+        self.navigationController?.navigationBar.tintColor = orange
     }
     
     override func viewWillAppear(animated: Bool) {

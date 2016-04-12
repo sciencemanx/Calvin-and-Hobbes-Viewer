@@ -32,13 +32,6 @@
 			remoteGlobalIDString = 66CDF7961BB879F100B91B62;
 			remoteInfo = "Calvin and Hobbes";
 		};
-		66CDF7BA1BB879F100B91B62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66CDF78F1BB879F100B91B62 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66CDF7961BB879F100B91B62;
-			remoteInfo = "Calvin and Hobbes";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +55,6 @@
 		66CDF7AE1BB879F100B91B62 /* Calvin and HobbesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calvin and HobbesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CDF7B21BB879F100B91B62 /* Calvin_and_HobbesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calvin_and_HobbesTests.swift; sourceTree = "<group>"; };
 		66CDF7B41BB879F100B91B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		66CDF7B91BB879F100B91B62 /* Calvin and HobbesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calvin and HobbesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68A066220DE41A60DDBEB800 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		806FE965C7E2D2DCC53BF2AC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -77,13 +69,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		66CDF7AB1BB879F100B91B62 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66CDF7B61BB879F100B91B62 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -161,7 +146,6 @@
 			children = (
 				66CDF7971BB879F100B91B62 /* Calvin and Hobbes.app */,
 				66CDF7AE1BB879F100B91B62 /* Calvin and HobbesTests.xctest */,
-				66CDF7B91BB879F100B91B62 /* Calvin and HobbesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,24 +219,6 @@
 			productReference = 66CDF7AE1BB879F100B91B62 /* Calvin and HobbesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		66CDF7B81BB879F100B91B62 /* Calvin and HobbesUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66CDF7C81BB879F100B91B62 /* Build configuration list for PBXNativeTarget "Calvin and HobbesUITests" */;
-			buildPhases = (
-				66CDF7B51BB879F100B91B62 /* Sources */,
-				66CDF7B61BB879F100B91B62 /* Frameworks */,
-				66CDF7B71BB879F100B91B62 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66CDF7BB1BB879F100B91B62 /* PBXTargetDependency */,
-			);
-			name = "Calvin and HobbesUITests";
-			productName = "Calvin and HobbesUITests";
-			productReference = 66CDF7B91BB879F100B91B62 /* Calvin and HobbesUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -279,10 +245,6 @@
 						CreatedOnToolsVersion = 7.0;
 						TestTargetID = 66CDF7961BB879F100B91B62;
 					};
-					66CDF7B81BB879F100B91B62 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 66CDF7961BB879F100B91B62;
-					};
 				};
 			};
 			buildConfigurationList = 66CDF7921BB879F100B91B62 /* Build configuration list for PBXProject "Calvin and Hobbes" */;
@@ -300,7 +262,6 @@
 			targets = (
 				66CDF7961BB879F100B91B62 /* Calvin and Hobbes */,
 				66CDF7AD1BB879F100B91B62 /* Calvin and HobbesTests */,
-				66CDF7B81BB879F100B91B62 /* Calvin and HobbesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -317,13 +278,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		66CDF7AC1BB879F100B91B62 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66CDF7B71BB879F100B91B62 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -406,13 +360,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66CDF7B51BB879F100B91B62 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -420,11 +367,6 @@
 			isa = PBXTargetDependency;
 			target = 66CDF7961BB879F100B91B62 /* Calvin and Hobbes */;
 			targetProxy = 66CDF7AF1BB879F100B91B62 /* PBXContainerItemProxy */;
-		};
-		66CDF7BB1BB879F100B91B62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66CDF7961BB879F100B91B62 /* Calvin and Hobbes */;
-			targetProxy = 66CDF7BA1BB879F100B91B62 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -460,6 +402,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -504,6 +447,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -528,7 +472,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				INFOPLIST_FILE = "Calvin and Hobbes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -546,7 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				INFOPLIST_FILE = "Calvin and Hobbes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -561,6 +505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				INFOPLIST_FILE = "Calvin and HobbesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "adamtech.Calvin-and-HobbesTests";
@@ -573,35 +518,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				INFOPLIST_FILE = "Calvin and HobbesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "adamtech.Calvin-and-HobbesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calvin and Hobbes.app/Calvin and Hobbes";
-			};
-			name = Release;
-		};
-		66CDF7C91BB879F100B91B62 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Calvin and HobbesUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "adamtech.Calvin-and-HobbesUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Calvin and Hobbes";
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		66CDF7CA1BB879F100B91B62 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Calvin and HobbesUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "adamtech.Calvin-and-HobbesUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Calvin and Hobbes";
-				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
@@ -631,15 +553,6 @@
 			buildConfigurations = (
 				66CDF7C61BB879F100B91B62 /* Debug */,
 				66CDF7C71BB879F100B91B62 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66CDF7C81BB879F100B91B62 /* Build configuration list for PBXNativeTarget "Calvin and HobbesUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66CDF7C91BB879F100B91B62 /* Debug */,
-				66CDF7CA1BB879F100B91B62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

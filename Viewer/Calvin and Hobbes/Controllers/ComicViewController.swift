@@ -20,6 +20,7 @@ class ComicViewController: UIViewController {
     var comic: Comic!
     var date: NSDate!
     let defaults = NSUserDefaults.standardUserDefaults()
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -36,7 +37,6 @@ class ComicViewController: UIViewController {
         if let image = comic?.image {
             self.comicImageView.image = image
         } else {
-            let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
             spinner.color = .blackColor()
             spinner.hidesWhenStopped = true
             view.addSubview(spinner)
@@ -45,7 +45,7 @@ class ComicViewController: UIViewController {
             spinner.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
             comic?.onComplete = {
                 self.comicImageView.image = self.comic?.image
-                spinner.stopAnimating()
+                self.spinner.stopAnimating()
                 self.updateConstraintsForSize(self.viewSizeWithoutInsets())
                 self.updateMinZoomScaleForSize(self.viewSizeWithoutInsets())
             }
@@ -81,7 +81,10 @@ class ComicViewController: UIViewController {
         return size
     }
     
-    func updateConstraintsForSize(size: CGSize) {
+    private func updateConstraintsForSize(size: CGSize) {
+        let bounds = UIScreen.mainScreen().bounds
+        spinner.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
+        
         let yOffset = max(0, (size.height - comicImageView.frame.height) / 2)
         imageViewTopConstraint.constant = yOffset
         imageViewBottomConstraint.constant = yOffset

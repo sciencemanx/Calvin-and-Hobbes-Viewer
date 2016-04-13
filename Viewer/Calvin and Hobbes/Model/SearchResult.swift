@@ -6,13 +6,21 @@
 //  Copyright © 2016 Adam Van Prooyen. All rights reserved.
 //
 
+import Foundation
+import Timepiece
+
 class SearchResult {
     
-    let date: String
+    let date: NSDate
     let snippet: String
     
-    init(date: String, snippet: String) {
+    init(date: NSDate, snippet: String) {
         self.date = date
+        self.snippet = snippet
+    }
+    
+    init(date: String, snippet: String) {
+        self.date = date.dateFromFormat("yyyy-MM-dd")!
         self.snippet = snippet
     }
     

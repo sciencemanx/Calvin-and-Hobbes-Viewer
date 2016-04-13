@@ -17,8 +17,7 @@ class ComicSearchViewController: UIViewController, UITableViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "ShowComic") {
-            let date = results[tableView.indexPathForSelectedRow!.row].date.dateFromFormat("yyyy-MM-dd")!
-            print(date)
+            let date = results[tableView.indexPathForSelectedRow!.row].date
             let vc = segue.destinationViewController as! ComicPageViewController
             vc.initialize(comicManager, date: date)
         }
@@ -65,7 +64,7 @@ extension ComicSearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("SearchResult", forIndexPath: indexPath)
         
         cell.textLabel?.attributedText = attributeString(results[indexPath.row].snippet)
-        cell.detailTextLabel?.text = results[indexPath.row].date
+        cell.detailTextLabel?.text = results[indexPath.row].date.stringFromFormat("EEEE d MMMM YYYY")
         
         return cell
     }

@@ -51,7 +51,7 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
     }
     
     func setTitleForDate(date: NSDate) {
-        self.title = date.stringFromFormat("EEEE dd MMMM YYYY")
+        self.title = date.stringFromFormat("EEEE d MMMM YYYY")
     }
     
 }

@@ -50,6 +50,10 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
             let vc = segue.destinationViewController as! ComicSearchViewController
             vc.comicManager = comicManager
         }
+        if (segue.identifier == "FavoriteComics") {
+            let vc = segue.destinationViewController as! FavoritesViewController
+            vc.initialize(comicManager)
+        }
     }
     
 }
@@ -64,6 +68,28 @@ extension ComicSelectionViewController: PDTSimpleCalendarViewDelegate {
             self.performSegueWithIdentifier("ShowComic", sender: self)
         }
         userSelection = true
+    }
+    
+    func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, circleColorForDate date: NSDate!) -> UIColor! {
+        return .orangeColor()
+    }
+    
+    func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, shouldUseCustomColorsForDate date: NSDate!) -> Bool {
+        if let favorites = defaults.objectForKey("favorites") as? [NSDate] {
+            if (favorites.contains(date)) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, textColorForDate date: NSDate!) -> UIColor! {
+        if let favorites = defaults.objectForKey("favorites") as? [NSDate] {
+            if (favorites.contains(date)) {
+                return .whiteColor()
+            }
+        }
+        return .blackColor()
     }
     
 }

@@ -29,6 +29,9 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setTitleForDate(date)
+        updateFavoriteButton()
     }
     
     func initialize(comicManager: ComicManager, date: NSDate) {
@@ -38,7 +41,6 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
         self.dataSource = self
         
         self.date = date
-        self.setTitleForDate(date)
         
         let vc = viewControllerForDate(date)
         setViewControllers([vc!], direction: .Forward, animated: true, completion: nil)

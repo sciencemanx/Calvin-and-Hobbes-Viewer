@@ -26,6 +26,10 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
         
         self.edgesForExtendedLayout = UIRectEdge.None
         self.navigationController?.navigationBar.tintColor = orange
+        
+        if (defaults.objectForKey("favorites") == nil) {
+            defaults.setObject([NSDate](), forKey: "favorites")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

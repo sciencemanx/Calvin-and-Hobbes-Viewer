@@ -47,10 +47,22 @@
         <!--Comic Page View Controller-->
         <scene sceneID="7wQ-Ya-2KQ">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="zA7-Ek-LVM" customClass="ComicPageViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Comic Page View Controller" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="zA7-Ek-LVM" customClass="ComicPageViewController" customModule="Calvin_and_Hobbes" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="yOr-am-Hs9">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="bTF-5A-8bG">
+                            <color key="tintColor" red="1" green="0.4549019608" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="toggleFavorite:" destination="zA7-Ek-LVM" id="DSN-nl-orl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="favoriteButton" destination="bTF-5A-8bG" id="pPU-Cx-pCe"/>
+                    </connections>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wSS-Fi-IZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2223" y="390"/>
+            <point key="canvasLocation" x="2255" y="738"/>
         </scene>
         <!--Comic Search View Controller-->
         <scene sceneID="ldm-B4-R9F">
@@ -123,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8e-F0-yst" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2223" y="1109"/>
+            <point key="canvasLocation" x="1531" y="1185"/>
         </scene>
         <!--Comic View-->
         <scene sceneID="0o3-LF-Orv">
@@ -174,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TFK-sj-k7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2913" y="390"/>
+            <point key="canvasLocation" x="2933" y="738"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k9g-Iy-Qv4">
@@ -204,6 +216,6 @@
         <image name="DefaultComicImage" width="900" height="286"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3LA-Uy-fLD"/>
+        <segue reference="PL8-E8-ncz"/>
     </inferredMetricsTieBreakers>
 </document>

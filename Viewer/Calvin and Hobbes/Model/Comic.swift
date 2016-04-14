@@ -14,7 +14,9 @@ class Comic {
     let date: NSDate
     var image: UIImage?
     var url: String?
+    var panelSeparators: [Int]?
     
+    // Lets you register completion handler for comic download after initialization
     var onComplete: () -> () = {}
     
     init(date: NSDate) {
@@ -25,5 +27,18 @@ class Comic {
             self.onComplete()
         })
     }
+    
+    lazy var panels: [UIImage]? = {
+        if let image = self.image, seps = self.panelSeparators {
+            let cgImage = image.CGImage
+            var panels: [UIImage] = []
+            for (start, end) in zip(seps, seps) {
+                let panel = CGImageCreateWithImageInRect(cgImage, CGRect(x: start, y: 0, width: end - start, height: Int(image.size.height)))
+                panels.append(UIImage(CGImage: panel!))
+            }
+            return panels
+        }
+        return nil
+    }()
     
 }

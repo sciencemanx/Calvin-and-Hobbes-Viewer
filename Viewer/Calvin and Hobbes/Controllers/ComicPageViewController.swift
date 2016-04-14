@@ -14,6 +14,9 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
     var comicManager: ComicManager!
     var nextVC: ComicViewController?
     var date: NSDate!
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     init(comicManager: ComicManager, date: NSDate) {
         super.init(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
@@ -24,16 +27,43 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
         super.init(coder: coder)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     func initialize(comicManager: ComicManager, date: NSDate) {
         self.comicManager = comicManager
         
         self.delegate = self
         self.dataSource = self
         
+        self.date = date
         self.setTitleForDate(date)
         
         let vc = viewControllerForDate(date)
         setViewControllers([vc!], direction: .Forward, animated: true, completion: nil)
+    }
+    
+    func updateFavoriteButton() {
+        if let favorites = defaults.objectForKey("favorites") as? [NSDate] {
+            if (favorites.contains(date)) {
+                favoriteButton.title = "Saved"
+            } else {
+                favoriteButton.title = "Save"
+            }
+        }
+    }
+    
+    @IBAction func toggleFavorite(sender: UIBarButtonItem) {
+        if var favorites = defaults.objectForKey("favorites") as? [NSDate] {
+            if (favorites.contains(date)) {
+                favorites.removeAtIndex(favorites.indexOf(date)!)
+            } else {
+                favorites.append(date)
+            }
+            defaults.setObject(favorites, forKey: "favorites")
+        }
+        updateFavoriteButton()
     }
     
     func viewControllerForDate(date: NSDate) -> ComicViewController? {
@@ -75,7 +105,9 @@ extension ComicPageViewController: UIPageViewControllerDataSource {
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if (completed) {
             if let vc = nextVC {
+                date = vc.date
                 setTitleForDate(vc.date)
+                updateFavoriteButton()
             }
         }
     }

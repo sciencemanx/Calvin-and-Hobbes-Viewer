@@ -23,7 +23,7 @@ class ComicResource(Resource):
       comic = Comic(date)
       self.comics[comic.date_str()] = comic
     url = self.comics[date].url()
-    return {'url': url}
+    return {'url': url, 'seps': '224 457 666'}
 
 class SearchResource(Resource):
   def __init__(self, index):

@@ -23,22 +23,28 @@ class Comic {
         self.date = date
         ComicDownloader.getComic(date, completionHandler: {
             self.url = $0
-            self.image = $1
+            self.panelSeparators = $1
+            self.image = $2
             self.onComplete()
         })
     }
     
-    lazy var panels: [UIImage]? = {
+    init(date: NSDate, image: UIImage) {
+        self.date = date
+        self.image = image
+    }
+    
+    func panels() -> [UIImage]? {
         if let image = self.image, seps = self.panelSeparators {
-            let cgImage = image.CGImage
+            let cgImage = image.CGImage!
             var panels: [UIImage] = []
-            for (start, end) in zip(seps, seps) {
+            for (start, end) in zip([0] + seps, seps + [Int(image.size.width)]) {
                 let panel = CGImageCreateWithImageInRect(cgImage, CGRect(x: start, y: 0, width: end - start, height: Int(image.size.height)))
                 panels.append(UIImage(CGImage: panel!))
             }
             return panels
         }
         return nil
-    }()
+    }
     
 }

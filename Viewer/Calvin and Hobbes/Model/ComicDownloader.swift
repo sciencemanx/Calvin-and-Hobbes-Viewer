@@ -12,25 +12,30 @@ import Timepiece
 
 class ComicDownloader {
     
-    static let baseURL = "https://calvinserver.herokuapp.com"
+//    static let baseURL = "https://calvinserver.herokuapp.com"
+    static let baseURL = "http://localhost:5000"
     
-    class func getComic(date: NSDate, completionHandler: (String?, UIImage?) -> ()) {
+    class func getComic(date: NSDate, completionHandler: (String?, [Int]?,  UIImage?) -> ()) {
         let datePart = date.stringFromFormat("YYYY-MM-dd")
         
         Alamofire.request(.GET, baseURL + "/comic/" + datePart)
         .responseJSON { response in
             if let json = response.result.value as? [String: AnyObject] {
-                if let imageUrl = json["url"] as? String {
+                if let imageUrl = json["url"] as? String, imageSepsString = json["seps"] as? String {
+                    let imageSeps = imageSepsString.characters.split(" ")
+                                                              .map(String.init)
+                                                              .map{ Int($0)! }
                     Alamofire.request(.GET, imageUrl)
                     .responseData { response in
+                        print(imageSeps)
                         if let data = response.data {
-                            completionHandler(imageUrl, UIImage(data: data))
+                            completionHandler(imageUrl, imageSeps, UIImage(data: data))
                         } else {
-                            completionHandler(imageUrl, nil)
+                            completionHandler(imageUrl, imageSeps, nil)
                         }
                     }
                 } else {
-                    completionHandler(nil, nil)
+                    completionHandler(nil, nil, nil)
                 }
             }
         }

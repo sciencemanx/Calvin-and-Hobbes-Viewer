@@ -75,7 +75,7 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
             let comic = comicManager.comicForDate(date)
             if let comicVC = storyboard?.instantiateViewControllerWithIdentifier("ComicViewController")
                 as? ComicViewController {
-                comicVC.initialize(comic, date)
+                comicVC.initialize(comic)
                 return comicVC
             }
             return nil

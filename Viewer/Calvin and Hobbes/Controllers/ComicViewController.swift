@@ -26,16 +26,17 @@ class ComicViewController: UIViewController {
         super.init(coder: coder)
     }
     
-    func initialize(comic: Comic, _ date: NSDate) {
+    func initialize(comic: Comic) {
         self.comic = comic
-        self.date = date
+        self.date = comic.date
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.maximumZoomScale = 3.0
         if let image = comic?.image {
             self.comicImageView.image = image
+            self.updateConstraintsForSize(self.viewSizeWithoutInsets())
+            self.updateMinZoomScaleForSize(self.viewSizeWithoutInsets())
         } else {
             spinner.color = .blackColor()
             spinner.hidesWhenStopped = true
@@ -50,7 +51,11 @@ class ComicViewController: UIViewController {
                 self.updateMinZoomScaleForSize(self.viewSizeWithoutInsets())
             }
         }
+        scrollView.maximumZoomScale = 3.0
         self.edgesForExtendedLayout = UIRectEdge.None
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(touchTwice))
+        doubleTap.numberOfTapsRequired = 2
+        self.view.addGestureRecognizer(doubleTap)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -67,6 +72,22 @@ class ComicViewController: UIViewController {
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         updateConstraintsForSize(viewSizeWithoutInsets())
+    }
+    
+    func touchTwice(gesture: UIGestureRecognizer) {
+        if (date.weekday != 1) {
+            self.performSegueWithIdentifier("ZoomComic", sender: self)
+        } else {
+            self.scrollView.setZoomScale(1.5, animated: true)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "ZoomComic") {
+            guard let vc = segue.destinationViewController as? ZoomedComicViewController
+                else { return }
+            vc.initialize(comic)
+        }
     }
     
     

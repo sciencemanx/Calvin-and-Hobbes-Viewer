@@ -4,12 +4,16 @@ import os
 import sys
 import random
 
+
+
 def load_images(dirname):
 	images = []
 	for image_name in os.listdir(dirname):
 		if image_name.startswith('.'):
 			continue
 		image = Image.open(dirname + '/' + image_name).convert('1')
+		x, y = image.size
+		image = image.resize((x, 280), Image.ANTIALIAS)
 		data = [0 if pixel == 0 else 1 for pixel in image.getdata()]
 		images.append(data)
 	return images
@@ -49,6 +53,8 @@ def get_column(img, i):
 
 def search_picture(clf, image_name):
 	image = Image.open(image_name).convert('1')
+	x, y = image.size
+	image = image.resize((x, 280), Image.ANTIALIAS)
 	w, h = image.size
 
 	columns = [get_column(image, i) for i in range(25)]
@@ -74,6 +80,13 @@ def search_picture(clf, image_name):
 	final_seps.append(seps[-1])
 	return final_seps, matches
 
+def train(edges, nonedges):
+	clf = svm.SVC(gamma=.001, C=100.)
+	X = normalize(nonedges + edges)
+	y = [0] * len(nonedges) + [1] * len(edges)
+	clf.fit(X, y)
+	return clf
+
 
 def main(edge_dir, non_edge_dir):
 	edges = load_images(edge_dir)
@@ -81,11 +94,7 @@ def main(edge_dir, non_edge_dir):
 
 	crossvalidate(edges, nonedges)
 
-	clf = svm.SVC(gamma=.001, C=100.)
-	X = normalize(nonedges + 
-				  edges)
-	y = [0] * len(nonedges) + [1] * len(edges)
-	clf.fit(X, y)
+	clf = train(edges, nonedges)
 
 	for comic in os.listdir('test'):
 		print(comic)

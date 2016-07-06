@@ -1,70 +1,36 @@
-from sklearn import svm, cluster
-from PIL import Image
-import numpy as np
-from datetime import timedelta, date
-import requests as r
-import json
-from io import BytesIO
+from comic_detect import load_images, train, search_picture
 import os
+import sys
 
-MAX_IMAGE_HEIGHT = 260
+def main():
+	if len(sys.argv) != 4:
+		print('Usage: {} <edges-dir> <non-edges-dir> <comics-dir>'.format(sys.argv[0]))
+		sys.exit(-1)
+	edge_dir = sys.argv[1]
+	non_edge_dir = sys.argv[2]
+	comics_dir = sys.argv[3]
 
-def load_data(path):
-	img = Image.open(path).convert('1')
-	return np.array([0 if pxl == 0 else 1 for pxl in img.getdata()]).reshape(img.size)
+	edges = load_images(edge_dir)
+	nonedges = load_images(non_edge_dir)
 
-def get_frame(data, i=0):
-	return data[i:i+25, :MAX_IMAGE_HEIGHT].ravel()
+	clf = train(edges, nonedges)
 
-def daterange(start_date, end_date):
-    for n in range(int ((end_date - start_date).days)):
-        yield start_date + timedelta(n)
+	comic_index = {}
 
-def load_data_from_date(date):
-	date_str = date.strftime('%Y-%m-%d')
-	url = 'https://calvinserver.herokuapp.com/comic/{}'.format(date_str)
-	data = json.loads(r.get(url).text)
-	img_url = data['url']
-	img_bytes = BytesIO(r.get(img_url).content)
-	return load_data(img_bytes)
-
-def load_images(path):
-	images = []
-	for img_file in os.listdir(path):
-		if img_file.startswith('.'):
+	for file in os.listdir(comics_dir):
+		if not file.endswith('.gif'):
 			continue
-		data = load_data(path + '/' + img_file)
-		images.append(data)
-	return images
+		path = '{}/{}'.format(comics_dir, file)
+		try:
+			panels, _ = search_picture(clf, path)
+		except Exception as e:
+			print('{} probably had a dimension issue'.format(file))
+			print(e)
+		else:
+			print(file, panels)
+			comic_index[file] = panels
 
-def get_panels(date, clf):
-	img = load_data_from_date(date)
-	print(img)
-	w, h = img.shape
-	frames = [get_frame(img, i) for i in range(w - 25)]
-	for frame in frames:
-		if clf.predict([frame])[0] == 0.0:
-			print('asdfasdfadsfa')
-	# print(matches)
-
-def train(edges, nonedges):
-	edges = np.vstack([get_frame(img).ravel() for img in load_images(edges)])
-	nonedges = np.vstack([get_frame(img).ravel() for img in load_images(nonedges)])
-	X = np.concatenate((edges, nonedges))
-	y = np.concatenate((np.ones((edges.shape[0],)),
-						np.zeros((nonedges.shape[0],))))
-	clf = svm.SVC(gamma=.001, C=100.)
-	clf.fit(X, y)
-	print(clf.score(X, y))
-	return clf
+	print(comic_index)
 
 if __name__ == '__main__':
-	clf = train('edges', 'nonedges')
-	panels_for_date = {}
-	start = date(1985, 11, 18)
-	end = date(1985, 11, 21)
-	for date in daterange(start, end):
-		panels = get_panels(date, clf)
-		print(panels)
-		panels_for_date[date] = panels
-	
+	main()

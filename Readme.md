@@ -1,5 +1,5 @@
 <img src="logo.png" width="150px" align="right" />
-# Calvin and Hobbes Viewer
+# Comic View for Calvin and Hobbes
 
 > an iOS app for reading Calvin and Hobbes comics
 
@@ -16,3 +16,7 @@ Then, simply download the zip folder of this repository and open the Xcode proje
 # Contributing
 
 If you have a feature you would like to add or a bug you have found, either implement the fix or open an issue! Don't hesitate to email me at adam.vanpr@gmail.com if you have any questions.
+
+>test
+>
+>sdfadfa

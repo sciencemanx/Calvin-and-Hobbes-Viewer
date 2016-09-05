@@ -12,8 +12,8 @@ import Timepiece
 
 class ComicDownloader {
     
-//    static let baseURL = "https://calvinserver.herokuapp.com"
-    static let baseURL = "http://localhost:5000"
+    static let baseURL = "https://calvinserver.herokuapp.com"
+//    static let baseURL = "http://localhost:5000"
     
     class func getComic(date: NSDate, completionHandler: (String?, [Int]?,  UIImage?) -> ()) {
         let datePart = date.stringFromFormat("YYYY-MM-dd")

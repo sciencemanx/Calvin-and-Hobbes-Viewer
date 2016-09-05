@@ -46,6 +46,10 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
         setViewControllers([vc!], direction: .Forward, animated: true, completion: nil)
     }
     
+    func logComicView(date: NSDate) {
+        
+    }
+    
     func updateFavoriteButton() {
         if let favorites = defaults.objectForKey("favorites") as? [NSDate] {
             if (favorites.contains(date)) {

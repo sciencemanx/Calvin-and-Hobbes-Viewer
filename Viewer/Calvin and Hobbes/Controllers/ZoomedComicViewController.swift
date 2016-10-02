@@ -20,13 +20,13 @@ class ZoomedComicViewController: UIPageViewController, UIPageViewControllerDeleg
         self.dataSource = self
     }
     
-    func initialize(comic: Comic) {
+    func initialize(_ comic: Comic) {
         self.comic = comic
         panels = comic.panels()
-        let vc = storyboard!.instantiateViewControllerWithIdentifier("ComicViewController")
+        let vc = storyboard!.instantiateViewController(withIdentifier: "ComicViewController")
             as! ComicViewController
-        vc.initialize(Comic(date: NSDate().change(weekday: 1), image: panels.first!))
-        self.setViewControllers([vc], direction: .Forward, animated: true, completion: nil)
+        vc.initialize(Comic(date: Date().change(weekday: 1), image: panels.first!))
+        self.setViewControllers([vc], direction: .forward, animated: true, completion: nil)
     }
     
 }
@@ -34,29 +34,29 @@ class ZoomedComicViewController: UIPageViewController, UIPageViewControllerDeleg
 
 extension ZoomedComicViewController: UIPageViewControllerDataSource {
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let oldVC = viewController as! ComicViewController
-        let idx = panels.indexOf(oldVC.comicImageView.image!)! + 1
+        let idx = panels.index(of: oldVC.comicImageView.image!)! + 1
         if (idx < panels.count) {
-            let vc = storyboard!.instantiateViewControllerWithIdentifier("ComicViewController")
+            let vc = storyboard!.instantiateViewController(withIdentifier: "ComicViewController")
                 as! ComicViewController
             let image = panels[idx]
-            vc.initialize(Comic(date: NSDate().change(weekday: 1), image: image))
+            vc.initialize(Comic(date: Date().change(weekday: 1), image: image))
             return vc
         }
         return nil
     }
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let oldVC = viewController as! ComicViewController
-        let idx = panels.indexOf(oldVC.comicImageView.image!)! - 1
+        let idx = panels.index(of: oldVC.comicImageView.image!)! - 1
         if (idx > -1) {
-            let vc = storyboard!.instantiateViewControllerWithIdentifier("ComicViewController")
+            let vc = storyboard!.instantiateViewController(withIdentifier: "ComicViewController")
                 as! ComicViewController
             let image = panels[idx]
-            vc.initialize(Comic(date: NSDate().change(weekday: 1), image: image))
+            vc.initialize(Comic(date: Date().change(weekday: 1), image: image))
             return vc
         }
         return nil

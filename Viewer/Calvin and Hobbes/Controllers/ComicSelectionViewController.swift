@@ -13,7 +13,7 @@ import PDTSimpleCalendar
 class ComicSelectionViewController: PDTSimpleCalendarViewController {
     
     let comicManager = ComicManager()
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     let orange = UIColor(red: 255/255, green: 116/255, blue: 0, alpha: 1)
     var userSelection = true // changing selectedDate programmatically calls didSelectDate which
                              // triggers an unwanted transition
@@ -24,35 +24,39 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
         firstDate = comicManager.startDate
         lastDate = comicManager.endDate
         
-        self.edgesForExtendedLayout = UIRectEdge.None
+        self.edgesForExtendedLayout = UIRectEdge()
         self.navigationController?.navigationBar.tintColor = orange
         
-        if (defaults.objectForKey("favorites") == nil) {
-            defaults.setObject([NSDate](), forKey: "favorites")
+        if (defaults.object(forKey: "favorites") == nil) {
+            defaults.set([Date](), forKey: "favorites")
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        if let date = self.defaults.objectForKey("date") as? NSDate {
+    override func viewWillAppear(_ animated: Bool) {
+        if let date = self.defaults.object(forKey: "date") as? Date {
             self.userSelection = false
             self.selectedDate = date
-            self.scrollToSelectedDate(false)
+            self.scroll(toSelectedDate: false)
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "ShowComic") {
-            let vc = segue.destinationViewController as! ComicPageViewController
-            let date = defaults.objectForKey("date") as! NSDate
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier! {
+        case "ShowComic":
+            let vc = segue.destination as! ComicPageViewController
+            let date = defaults.object(forKey: "date") as! Date
             vc.initialize(comicManager, date: date)
-        }
-        if (segue.identifier == "SearchComics") {
-            let vc = segue.destinationViewController as! ComicSearchViewController
+            break
+        case "SearchComics":
+            let vc = segue.destination as! ComicSearchViewController
             vc.comicManager = comicManager
-        }
-        if (segue.identifier == "FavoriteComics") {
-            let vc = segue.destinationViewController as! FavoritesViewController
+            break
+        case "FavoriteComics":
+            let vc = segue.destination as! FavoritesViewController
             vc.initialize(comicManager)
+            break
+        default:
+            break
         }
     }
     
@@ -61,21 +65,21 @@ class ComicSelectionViewController: PDTSimpleCalendarViewController {
 
 extension ComicSelectionViewController: PDTSimpleCalendarViewDelegate {
     
-    func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, didSelectDate date: NSDate!) {
+    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         if (userSelection) {
-            defaults.setObject(date, forKey: "date")
+            defaults.set(date, forKey: "date")
             
-            self.performSegueWithIdentifier("ShowComic", sender: self)
+            self.performSegue(withIdentifier: "ShowComic", sender: self)
         }
         userSelection = true
     }
     
-    func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, circleColorForDate date: NSDate!) -> UIColor! {
-        return .orangeColor()
+    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, circleColorFor date: Date!) -> UIColor! {
+        return .orange
     }
     
-    func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, shouldUseCustomColorsForDate date: NSDate!) -> Bool {
-        if let favorites = defaults.objectForKey("favorites") as? [NSDate] {
+    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, shouldUseCustomColorsFor date: Date!) -> Bool {
+        if let favorites = defaults.object(forKey: "favorites") as? [Date] {
             if (favorites.contains(date)) {
                 return true
             }
@@ -83,13 +87,13 @@ extension ComicSelectionViewController: PDTSimpleCalendarViewDelegate {
         return false
     }
     
-    func simpleCalendarViewController(controller: PDTSimpleCalendarViewController!, textColorForDate date: NSDate!) -> UIColor! {
-        if let favorites = defaults.objectForKey("favorites") as? [NSDate] {
+    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, textColorFor date: Date!) -> UIColor! {
+        if let favorites = defaults.object(forKey: "favorites") as? [Date] {
             if (favorites.contains(date)) {
-                return .whiteColor()
+                return .white
             }
         }
-        return .blackColor()
+        return .black
     }
     
 }

@@ -10,27 +10,27 @@ import UIKit
 
 class FavoritesViewController: UIViewController, UITableViewDelegate {
 
-    let defaults = NSUserDefaults.standardUserDefaults()
-    var favorites: [NSDate]!
+    let defaults = UserDefaults.standard
+    var favorites: [Date]!
     var comicManager: ComicManager!
     
     @IBOutlet weak var tableView: UITableView!
     
-    func initialize(comicManager: ComicManager) {
+    func initialize(_ comicManager: ComicManager) {
         self.comicManager = comicManager
     }
     
-    override func viewWillAppear(animated: Bool) {
-        if let favorites = defaults.objectForKey("favorites") as? [NSDate] {
-            self.favorites = favorites.sort({ $0.compare($1) == .OrderedAscending })
+    override func viewWillAppear(_ animated: Bool) {
+        if let favorites = defaults.object(forKey: "favorites") as? [Date] {
+            self.favorites = favorites.sorted(by: { $0.compare($1) == .orderedAscending })
         }
         tableView.reloadData()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ShowComic") {
-            let date = favorites[tableView.indexPathForSelectedRow!.row]
-            let vc = segue.destinationViewController as! ComicPageViewController
+            let date = favorites[(tableView.indexPathForSelectedRow! as NSIndexPath).row]
+            let vc = segue.destination as! ComicPageViewController
             vc.initialize(comicManager, date: date)
         }
     }
@@ -39,25 +39,25 @@ class FavoritesViewController: UIViewController, UITableViewDelegate {
 
 extension FavoritesViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Favorite", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Favorite", for: indexPath)
         
-        cell.textLabel?.text = favorites[indexPath.row].stringFromFormat("EEEE d MMMM YYYY")
+        cell.textLabel?.text = favorites[(indexPath as NSIndexPath).row].stringFromFormat("EEEE d MMMM YYYY")
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("ShowComic", sender: self)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    @objc(tableView:didSelectRowAtIndexPath:) func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ShowComic", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

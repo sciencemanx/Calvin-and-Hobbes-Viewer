@@ -15,17 +15,17 @@ class ComicDownloader {
     static let baseURL = "https://calvinserver.herokuapp.com"
 //    static let baseURL = "http://localhost:5000"
     
-    class func getComic(date: NSDate, completionHandler: (String?, [Int]?,  UIImage?) -> ()) {
+    class func getComic(_ date: Date, completionHandler: @escaping (String?, [Int]?,  UIImage?) -> ()) {
         let datePart = date.stringFromFormat("YYYY-MM-dd")
         
-        Alamofire.request(.GET, baseURL + "/comic/" + datePart)
+        
+        Alamofire.request(baseURL + "/comic/" + datePart, method: .get)
         .responseJSON { response in
             if let json = response.result.value as? [String: AnyObject] {
-                if let imageUrl = json["url"] as? String, imageSepsString = json["seps"] as? String {
-                    let imageSeps = imageSepsString.characters.split(" ")
-                                                              .map(String.init)
-                                                              .map{ Int($0)! }
-                    Alamofire.request(.GET, imageUrl)
+                if let imageUrl = json["url"] as? String, let imageSepsString = json["seps"] as? String {
+                    let imageSeps = imageSepsString.components(separatedBy: " ")
+                                                   .map{ Int($0)! }
+                    Alamofire.request(imageUrl, method: .get)
                     .responseData { response in
                         print(imageSeps)
                         if let data = response.data {
@@ -41,9 +41,9 @@ class ComicDownloader {
         }
     }
     
-    class func searchComics(query: String, completionHandler: ([SearchResult]) -> ()) {
-        let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        Alamofire.request(.GET, baseURL + "/search/" + escapedQuery)
+    class func searchComics(_ query: String, completionHandler: @escaping ([SearchResult]) -> ()) {
+        let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        Alamofire.request(baseURL + "/search/" + escapedQuery, method: .get)
         .responseJSON { response in
             if let results = response.result.value as? [[String: String]] {
                 completionHandler(results.map({ result in

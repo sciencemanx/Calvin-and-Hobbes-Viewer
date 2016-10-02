@@ -11,12 +11,12 @@ import Timepiece
 
 class ComicManager {
     
-    let startDate = NSDate.date(year: 1985, month: 11, day: 18)
-    let endDate = NSDate.date(year: 1995, month: 12, day: 31)
+    let startDate = Date.date(year: 1985, month: 11, day: 18)
+    let endDate = Date.date(year: 1995, month: 12, day: 31)
     
-    private var comics = [NSDate: Comic]()
+    fileprivate var comics = [Date: Comic]()
     
-    func comicForDate(date: NSDate) -> Comic {
+    func comicForDate(_ date: Date) -> Comic {
         if let comic = comics[date] {
             return comic
         } else {

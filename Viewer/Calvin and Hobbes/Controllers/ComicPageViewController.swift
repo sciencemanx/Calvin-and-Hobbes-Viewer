@@ -13,13 +13,13 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
     
     var comicManager: ComicManager!
     var nextVC: ComicViewController?
-    var date: NSDate!
-    let defaults = NSUserDefaults.standardUserDefaults()
+    var date: Date!
+    let defaults = UserDefaults.standard
     
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
-    init(comicManager: ComicManager, date: NSDate) {
-        super.init(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+    init(comicManager: ComicManager, date: Date) {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         initialize(comicManager, date: date)
     }
 
@@ -34,7 +34,7 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
         updateFavoriteButton()
     }
     
-    func initialize(comicManager: ComicManager, date: NSDate) {
+    func initialize(_ comicManager: ComicManager, date: Date) {
         self.comicManager = comicManager
         
         self.delegate = self
@@ -43,15 +43,15 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
         self.date = date
         
         let vc = viewControllerForDate(date)
-        setViewControllers([vc!], direction: .Forward, animated: true, completion: nil)
+        setViewControllers([vc!], direction: .forward, animated: true, completion: nil)
     }
     
-    func logComicView(date: NSDate) {
+    func logComicView(_ date: Date) {
         
     }
     
     func updateFavoriteButton() {
-        if let favorites = defaults.objectForKey("favorites") as? [NSDate] {
+        if let favorites = defaults.object(forKey: "favorites") as? [Date] {
             if (favorites.contains(date)) {
                 favoriteButton.title = "Saved"
             } else {
@@ -60,24 +60,24 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
         }
     }
     
-    @IBAction func toggleFavorite(sender: UIBarButtonItem) {
-        if var favorites = defaults.objectForKey("favorites") as? [NSDate] {
+    @IBAction func toggleFavorite(_ sender: UIBarButtonItem) {
+        if var favorites = defaults.object(forKey: "favorites") as? [Date] {
             if (favorites.contains(date)) {
-                favorites.removeAtIndex(favorites.indexOf(date)!)
+                favorites.remove(at: favorites.index(of: date)!)
             } else {
                 favorites.append(date)
             }
-            defaults.setObject(favorites, forKey: "favorites")
+            defaults.set(favorites, forKey: "favorites")
         }
         updateFavoriteButton()
     }
     
-    func viewControllerForDate(date: NSDate) -> ComicViewController? {
+    func viewControllerForDate(_ date: Date) -> ComicViewController? {
         if (date < comicManager.startDate || date > comicManager.endDate) {
             return nil
         } else {
             let comic = comicManager.comicForDate(date)
-            if let comicVC = storyboard?.instantiateViewControllerWithIdentifier("ComicViewController")
+            if let comicVC = storyboard?.instantiateViewController(withIdentifier: "ComicViewController")
                 as? ComicViewController {
                 comicVC.initialize(comic)
                 return comicVC
@@ -86,7 +86,7 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
         }
     }
     
-    func setTitleForDate(date: NSDate) {
+    func setTitleForDate(_ date: Date) {
         self.title = date.stringFromFormat("EEEE d MMMM YYYY")
     }
     
@@ -94,25 +94,25 @@ class ComicPageViewController: UIPageViewController, UIPageViewControllerDelegat
 
 extension ComicPageViewController: UIPageViewControllerDataSource {
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let comicViewController = viewController as! ComicViewController
-        return viewControllerForDate(comicViewController.date! + 1.day)
+        return viewControllerForDate((comicViewController.date! as Date) + 1.day)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let comicViewController = viewController as! ComicViewController
-        return viewControllerForDate(comicViewController.date! - 1.day)
+        return viewControllerForDate((comicViewController.date! as Date) - 1.day)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+    @objc(pageViewController:willTransitionToViewControllers:) func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         nextVC = pendingViewControllers.first as? ComicViewController
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if (completed) {
             if let vc = nextVC {
-                date = vc.date
-                setTitleForDate(vc.date)
+                date = vc.date as Date!
+                setTitleForDate(vc.date as Date)
                 updateFavoriteButton()
             }
         }

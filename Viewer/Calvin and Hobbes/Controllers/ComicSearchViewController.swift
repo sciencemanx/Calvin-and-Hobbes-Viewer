@@ -15,19 +15,19 @@ class ComicSearchViewController: UIViewController, UITableViewDelegate {
     var comicManager: ComicManager!
     var results: [SearchResult] = []
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ShowComic") {
-            let date = results[tableView.indexPathForSelectedRow!.row].date
-            let vc = segue.destinationViewController as! ComicPageViewController
+            let date = results[(tableView.indexPathForSelectedRow! as NSIndexPath).row].date
+            let vc = segue.destination as! ComicPageViewController
             vc.initialize(comicManager, date: date)
         }
     }
     
     // TODO: Move to its own class
     
-    func attributeString(string: String) -> NSAttributedString {
+    func attributeString(_ string: String) -> NSAttributedString {
         let attributedString = NSMutableAttributedString()
-        let boldAttrs = [NSFontAttributeName: UIFont.boldSystemFontOfSize(15)]
+        let boldAttrs = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)]
         var isBold = false
         for c in string.characters {
             if (c == "_") {
@@ -36,11 +36,11 @@ class ComicSearchViewController: UIViewController, UITableViewDelegate {
             else {
                 if (isBold) {
                     let boldString = NSMutableAttributedString(string: String(c), attributes: boldAttrs)
-                    attributedString.appendAttributedString(boldString)
+                    attributedString.append(boldString)
                 }
                 else {
                     let normalString = NSMutableAttributedString(string: String(c))
-                    attributedString.appendAttributedString(normalString)
+                    attributedString.append(normalString)
                 }
             }
         }
@@ -52,26 +52,26 @@ class ComicSearchViewController: UIViewController, UITableViewDelegate {
 
 extension ComicSearchViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SearchResult", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResult", for: indexPath)
         
-        cell.textLabel?.attributedText = attributeString(results[indexPath.row].snippet)
-        cell.detailTextLabel?.text = results[indexPath.row].date.stringFromFormat("EEEE d MMMM YYYY")
+        cell.textLabel?.attributedText = attributeString(results[(indexPath as NSIndexPath).row].snippet)
+        cell.detailTextLabel?.text = results[(indexPath as NSIndexPath).row].date.stringFromFormat("EEEE d MMMM YYYY")
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("ShowComic", sender: self)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    @objc(tableView:didSelectRowAtIndexPath:) func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ShowComic", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
@@ -79,14 +79,14 @@ extension ComicSearchViewController: UITableViewDataSource {
 
 extension ComicSearchViewController: UISearchBarDelegate {
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         ComicDownloader.searchComics(searchText, completionHandler: { results in
             self.results = results
             self.tableView.reloadData()
         })
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     

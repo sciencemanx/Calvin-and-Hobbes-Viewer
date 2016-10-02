@@ -11,10 +11,10 @@ import Timepiece
 
 class SearchResult {
     
-    let date: NSDate
+    let date: Date
     let snippet: String
     
-    init(date: NSDate, snippet: String) {
+    init(date: Date, snippet: String) {
         self.date = date
         self.snippet = snippet
     }

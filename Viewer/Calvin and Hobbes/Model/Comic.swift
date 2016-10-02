@@ -11,7 +11,7 @@ import UIKit
 
 class Comic {
     
-    let date: NSDate
+    let date: Date
     var image: UIImage?
     var url: String?
     var panelSeparators: [Int]?
@@ -19,7 +19,7 @@ class Comic {
     // Lets you register completion handler for comic download after initialization
     var onComplete: () -> () = {}
     
-    init(date: NSDate) {
+    init(date: Date) {
         self.date = date
         ComicDownloader.getComic(date, completionHandler: {
             self.url = $0
@@ -29,18 +29,18 @@ class Comic {
         })
     }
     
-    init(date: NSDate, image: UIImage) {
+    init(date: Date, image: UIImage) {
         self.date = date
         self.image = image
     }
     
     func panels() -> [UIImage]? {
-        if let image = self.image, seps = self.panelSeparators {
-            let cgImage = image.CGImage!
+        if let image = self.image, let seps = self.panelSeparators {
+            let cgImage = image.cgImage!
             var panels: [UIImage] = []
             for (start, end) in zip([0] + seps, seps + [Int(image.size.width)]) {
-                let panel = CGImageCreateWithImageInRect(cgImage, CGRect(x: start, y: 0, width: end - start, height: Int(image.size.height)))
-                panels.append(UIImage(CGImage: panel!))
+                let panel = cgImage.cropping(to: CGRect(x: start, y: 0, width: end - start, height: Int(image.size.height)))
+                panels.append(UIImage(cgImage: panel!))
             }
             return panels
         }

@@ -18,17 +18,17 @@ class ComicViewController: UIViewController {
     @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
     
     var comic: Comic!
-    var date: NSDate!
-    let defaults = NSUserDefaults.standardUserDefaults()
-    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    var date: Date!
+    let defaults = UserDefaults.standard
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    func initialize(comic: Comic) {
+    func initialize(_ comic: Comic) {
         self.comic = comic
-        self.date = comic.date
+        self.date = comic.date as Date!
     }
     
     override func viewDidLoad() {
@@ -38,11 +38,11 @@ class ComicViewController: UIViewController {
             self.updateConstraintsForSize(self.viewSizeWithoutInsets())
             self.updateMinZoomScaleForSize(self.viewSizeWithoutInsets())
         } else {
-            spinner.color = .blackColor()
+            spinner.color = .black
             spinner.hidesWhenStopped = true
             view.addSubview(spinner)
             spinner.startAnimating()
-            let bounds = UIScreen.mainScreen().bounds
+            let bounds = UIScreen.main.bounds
             spinner.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
             comic?.onComplete = {
                 self.comicImageView.image = self.comic?.image
@@ -52,14 +52,14 @@ class ComicViewController: UIViewController {
             }
         }
         scrollView.maximumZoomScale = 3.0
-        self.edgesForExtendedLayout = UIRectEdge.None
+        self.edgesForExtendedLayout = UIRectEdge()
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(touchTwice))
         doubleTap.numberOfTapsRequired = 2
         self.view.addGestureRecognizer(doubleTap)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        defaults.setObject(date, forKey: "date")
+    override func viewDidAppear(_ animated: Bool) {
+        defaults.set(date, forKey: "date")
         updateConstraintsForSize(viewSizeWithoutInsets())
         updateMinZoomScaleForSize(viewSizeWithoutInsets())
     }
@@ -70,21 +70,21 @@ class ComicViewController: UIViewController {
         updateMinZoomScaleForSize(viewSizeWithoutInsets())
     }
     
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         updateConstraintsForSize(viewSizeWithoutInsets())
     }
     
-    func touchTwice(gesture: UIGestureRecognizer) {
+    func touchTwice(_ gesture: UIGestureRecognizer) {
         if (date.weekday != 1) {
-            self.performSegueWithIdentifier("ZoomComic", sender: self)
+            self.performSegue(withIdentifier: "ZoomComic", sender: self)
         } else {
             self.scrollView.setZoomScale(1.5, animated: true)
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ZoomComic") {
-            guard let vc = segue.destinationViewController as? ZoomedComicViewController
+            guard let vc = segue.destination as? ZoomedComicViewController
                 else { return }
             vc.initialize(comic)
         }
@@ -93,17 +93,17 @@ class ComicViewController: UIViewController {
     
     // MARK: - Update Constraints
     
-    private func viewSizeWithoutInsets() -> CGSize {
+    fileprivate func viewSizeWithoutInsets() -> CGSize {
         var size = view.bounds.size
-        size.height -= UIApplication.sharedApplication().statusBarFrame.size.height
+        size.height -= UIApplication.shared.statusBarFrame.size.height
         if let navController = self.navigationController {
             size.height -= navController.navigationBar.frame.size.height
         }
         return size
     }
     
-    private func updateConstraintsForSize(size: CGSize) {
-        let bounds = UIScreen.mainScreen().bounds
+    fileprivate func updateConstraintsForSize(_ size: CGSize) {
+        let bounds = UIScreen.main.bounds
         spinner.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
         
         let yOffset = max(0, (size.height - comicImageView.frame.height) / 2)
@@ -117,7 +117,7 @@ class ComicViewController: UIViewController {
         view.layoutIfNeeded()
     }
     
-    private func updateMinZoomScaleForSize(size: CGSize) {
+    fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
         let widthScale = size.width / comicImageView.bounds.width
         let heightScale = size.height / comicImageView.bounds.height
         let minScale = min(widthScale, heightScale)
@@ -131,11 +131,11 @@ class ComicViewController: UIViewController {
 
 extension ComicViewController: UIScrollViewDelegate {
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
         updateConstraintsForSize(viewSizeWithoutInsets())
     }
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return comicImageView
     }
     

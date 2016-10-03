@@ -9,7 +9,7 @@
 import UIKit
 import Timepiece
 
-class ComicSearchViewController: UIViewController, UITableViewDelegate {
+class ComicSearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var comicManager: ComicManager!
@@ -21,30 +21,6 @@ class ComicSearchViewController: UIViewController, UITableViewDelegate {
             let vc = segue.destination as! ComicPageViewController
             vc.initialize(comicManager, date: date)
         }
-    }
-    
-    // TODO: Move to its own class
-    
-    func attributeString(_ string: String) -> NSAttributedString {
-        let attributedString = NSMutableAttributedString()
-        let boldAttrs = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)]
-        var isBold = false
-        for c in string.characters {
-            if (c == "_") {
-                isBold = !isBold
-            }
-            else {
-                if (isBold) {
-                    let boldString = NSMutableAttributedString(string: String(c), attributes: boldAttrs)
-                    attributedString.append(boldString)
-                }
-                else {
-                    let normalString = NSMutableAttributedString(string: String(c))
-                    attributedString.append(normalString)
-                }
-            }
-        }
-        return attributedString
     }
 
 }
@@ -69,7 +45,11 @@ extension ComicSearchViewController: UITableViewDataSource {
         return cell
     }
     
-    @objc(tableView:didSelectRowAtIndexPath:) func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+}
+
+extension ComicSearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowComic", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }

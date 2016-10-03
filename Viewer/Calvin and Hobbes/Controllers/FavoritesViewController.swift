@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController, UITableViewDelegate {
+class FavoritesViewController: UIViewController {
 
     let defaults = UserDefaults.standard
     var favorites: [Date]!
@@ -55,7 +55,11 @@ extension FavoritesViewController: UITableViewDataSource {
         return cell
     }
     
-    @objc(tableView:didSelectRowAtIndexPath:) func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+}
+
+extension FavoritesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowComic", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }

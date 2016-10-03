@@ -75,11 +75,11 @@ class ComicViewController: UIViewController {
     }
     
     func touchTwice(_ gesture: UIGestureRecognizer) {
-        if (date.weekday != 1) {
-            self.performSegue(withIdentifier: "ZoomComic", sender: self)
-        } else {
+//        if (date.weekday != 1) {
+//            self.performSegue(withIdentifier: "ZoomComic", sender: self)
+//        } else {
             self.scrollView.setZoomScale(1.5, animated: true)
-        }
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

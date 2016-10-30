@@ -68,7 +68,6 @@ extension ComicSelectionViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         if (userSelection) {
             defaults.set(date, forKey: "date")
-            
             self.performSegue(withIdentifier: "ShowComic", sender: self)
         }
         userSelection = true

@@ -5,6 +5,8 @@
 
 <img src="comic-preview.jpg" width="200px"></img> <img src="search-preview.jpg" width="200px"></img>
 
+[Website](http://van.prooyen.com/projects/#comic-viewer-for-calvin-and-hobbes)
+
 # Installation
 
 If you want to install this app before approval by the App Store and have a Mac, you can build and install the app onto your device.
